@@ -26,7 +26,7 @@ pip install numpy pandas scipy torch
 python analysis/paper_numbers.py results/overnight_v2/results_rows.csv results/device_control/results_rows.csv out.json
 ```
 
-The printed output is identical to `analysis/paper_numbers_output.txt`. In Colab, first clone this repository with `!git clone <repository URL>` and `%cd hiding-a-voice`, then run the same line with `!python`.
+The printed output is identical to `analysis/paper_numbers_output.txt`. In Colab, first run `!git clone https://github.com/Etliou/Hiding-A-Voice` and `%cd Hiding-A-Voice`, then run the same line with `!python`.
 
 ## What is where
 
