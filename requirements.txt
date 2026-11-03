@@ -1,0 +1,14 @@
+# Libraries used by the code. Everything ran in Google Colab on a T4 GPU.
+# The later runs recorded Python 3.13 and torch 2.11 (results/*/setup_info.json); other versions were not recorded.
+# torch, torchaudio, numpy, scipy, pandas, matplotlib and soundfile come preinstalled in Colab.
+# google.colab (drive.mount) exists only inside Colab. ffmpeg is used in code/07 and code/13 (preinstalled in Colab).
+torch
+torchaudio
+numpy
+scipy
+pandas
+matplotlib
+soundfile
+pesq          # PESQ quality score
+pystoi        # STOI / ESTOI intelligibility scores
+cryptography  # listening_test_2/analyse_listening_v2.py, to read the encrypted answer codes

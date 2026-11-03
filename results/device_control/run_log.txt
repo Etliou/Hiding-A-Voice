@@ -1,0 +1,230 @@
+[02:22:49] ======================================================================
+[02:22:49] DEVICE CONTROL RUN started 2026-10-27 02:22  (smoke=False)
+[02:23:23] !! No GPU found. It will still run, but very slowly. Runtime -> Change runtime type -> T4 GPU.
+[02:23:25] B. Loading encoders, rooms and thresholds from Drive
+[02:23:27]   SpeakerNet   <- /content/drive/MyDrive/PHC351_24324008_VoiceProtection/code/modelA_speaker_encoder.pt
+[02:23:27]   SpeakerNetB  <- /content/drive/MyDrive/PHC351_24324008_VoiceProtection/code/modelB_independent_judge.pt
+[02:23:28]   rooms: normalroom (RT60 0.42 s), bigroomcenter (RT60 1.05 s), bigroomcorner (RT60 1.81 s), stair (RT60 1.58 s)
+[02:23:28]   thresholds: tau_A 0.734   tau_B 0.793
+[02:23:28] A. Downloads
+[02:23:28]   downloading OpenSLR-28 rooms (1.3 GB) from https://www.openslr.org/resources/28/rirs_noises.zip ...
+[02:24:36]   unpacking simulated rooms ...
+[02:25:34]   simulated rooms: ready
+[02:25:34]   clips: 20 speakers from Drive training_data/heldout_subset (same files as the main run)
+[02:25:34] C. Simulated rooms (as in the overnight run v2)
+[02:25:37]   the paper's 200 simulated responses came from: largeroom: 200 responses in 4 rooms
+[02:25:56]   scanned 3000 simulated responses for RT60 matching (RT60 0.01-2.29 s)
+[02:25:56] D. Estimating the shared loudspeaker + microphone response (training rooms only)
+[02:25:56]   held out normalroom: estimate from bigroomcenter, bigroomcorner, stair; it differs from the held-out room by 3.5 dB on average (250 Hz-7 kHz); filter tail 1.2e-07
+[02:25:56]   held out bigroomcenter: estimate from normalroom, bigroomcorner, stair; it differs from the held-out room by 3.8 dB on average (250 Hz-7 kHz); filter tail 1.1e-07
+[02:25:56]   held out bigroomcorner: estimate from normalroom, bigroomcenter, stair; it differs from the held-out room by 2.6 dB on average (250 Hz-7 kHz); filter tail 1.1e-07
+[02:25:56]   held out stair: estimate from normalroom, bigroomcenter, bigroomcorner; it differs from the held-out room by 2.0 dB on average (250 Hz-7 kHz); filter tail 6.6e-08
+[02:25:56]   RT60-matched simulated rooms differ from their measured room by 14.9 dB without the device response and 2.5 dB with it (250 Hz-7 kHz)
+[02:25:58] E. Main loop: 120 units (6 passes x 20 speakers), 0 already done
+[02:49:37]   eps 0.004 seed 0 speaker  1/20  23.6 min   elapsed  0.5 h   remaining ~46.9 h for all passes
+[02:56:53]   stopped by you: analysing what is done
+[02:56:56] ## What the results say (rule fixed before the run)
+
+- eps 0.004. **KEY TEST** With 3 RT60-matched simulated rooms: once the device response is added, measured rooms and 3 RT60-matched simulated rooms are not distinguishable. The measured advantage is explained by the shared loudspeaker and microphone response. (equal budget: Δ = 0.010 [95% CI -0.028, 0.048], speaker-level p = —, measured better in 2/4 rooms and 1/1 runs; equal SNR: Δ = 0.008 [95% CI -0.028, 0.044], speaker-level p = —, measured better in 2/4 rooms and 1/1 runs.)
+  - equal budget: without the device response the gap is 0.062 [0.036, 0.088]; adding it changes the simulated rooms by 0.052 [0.006, 0.097] (positive = better protection) and removes 84% of the gap (95% CI 52% to 113%).
+  - equal SNR: without the device response the gap is 0.046 [0.019, 0.072]; adding it changes the simulated rooms by 0.037 [0.002, 0.073] (positive = better protection) and removes 82% of the gap (95% CI 43% to 121%).
+- eps 0.004. With 200 processed simulated rooms: once the device response is added, measured rooms and 200 processed simulated rooms are not distinguishable. The measured advantage is explained by the shared loudspeaker and microphone response. (equal budget: Δ = 0.005 [95% CI -0.001, 0.011], speaker-level p = —, measured better in 4/4 rooms and 1/1 runs; equal SNR: Δ = 0.002 [95% CI -0.004, 0.007], speaker-level p = —, measured better in 2/4 rooms and 1/1 runs.)
+  - equal budget: without the device response the gap is 0.045 [0.018, 0.073]; adding it changes the simulated rooms by 0.040 [0.008, 0.072] (positive = better protection) and removes 89% of the gap (95% CI 75% to 96%).
+  - equal SNR: without the device response the gap is 0.029 [0.001, 0.058]; adding it changes the simulated rooms by 0.028 [-0.005, 0.060] (positive = better protection) and removes 95% of the gap (95% CI 73% to 103%).
+
+Rule: a statement that one set of rooms protects better is made only if the 95% interval excludes 0 at BOTH equal budget and equal SNR.
+
+[02:56:56] F. Analysis written to /content/drive/MyDrive/PHC351_24324008_VoiceProtection/testing_data/results/device_control/analysis
+[02:56:56] ALL DONE in 0.6 h. Open /content/drive/MyDrive/PHC351_24324008_VoiceProtection/testing_data/results/device_control/analysis/REPORT.md and send me device_control.zip
+[02:56:56]   everything to send: /content/drive/MyDrive/PHC351_24324008_VoiceProtection/testing_data/results/device_control.zip
+[06:24:54] ======================================================================
+[06:24:54] DEVICE CONTROL RUN started 2026-10-27 06:24  (smoke=False)
+[06:25:20] GPU: Tesla T4
+[06:25:21] B. Loading encoders, rooms and thresholds from Drive
+[06:25:24]   SpeakerNet   <- /content/drive/MyDrive/PHC351_24324008_VoiceProtection/code/modelA_speaker_encoder.pt
+[06:25:24]   SpeakerNetB  <- /content/drive/MyDrive/PHC351_24324008_VoiceProtection/code/modelB_independent_judge.pt
+[06:25:25]   rooms: normalroom (RT60 0.42 s), bigroomcenter (RT60 1.05 s), bigroomcorner (RT60 1.81 s), stair (RT60 1.58 s)
+[06:25:25]   thresholds: tau_A 0.734   tau_B 0.793
+[06:25:25] A. Downloads
+[06:25:25]   downloading OpenSLR-28 rooms (1.3 GB) from https://www.openslr.org/resources/28/rirs_noises.zip ...
+[06:26:30]   unpacking simulated rooms ...
+[06:27:12]   simulated rooms: ready
+[06:27:12]   clips: 20 speakers from Drive training_data/heldout_subset (same files as the main run)
+[06:27:12] C. Simulated rooms (as in the overnight run v2)
+[06:27:14]   the paper's 200 simulated responses came from: largeroom: 200 responses in 4 rooms
+[06:27:29]   scanned 3000 simulated responses for RT60 matching (RT60 0.01-2.29 s)
+[06:27:30] D. Estimating the shared loudspeaker + microphone response (training rooms only)
+[06:27:30]   held out normalroom: estimate from bigroomcenter, bigroomcorner, stair; it differs from the held-out room by 3.5 dB on average (250 Hz-7 kHz); filter tail 1.2e-07
+[06:27:30]   held out bigroomcenter: estimate from normalroom, bigroomcorner, stair; it differs from the held-out room by 3.8 dB on average (250 Hz-7 kHz); filter tail 1.1e-07
+[06:27:30]   held out bigroomcorner: estimate from normalroom, bigroomcenter, stair; it differs from the held-out room by 2.6 dB on average (250 Hz-7 kHz); filter tail 1.1e-07
+[06:27:30]   held out stair: estimate from normalroom, bigroomcenter, bigroomcorner; it differs from the held-out room by 2.0 dB on average (250 Hz-7 kHz); filter tail 6.6e-08
+[06:27:30]   RT60-matched simulated rooms differ from their measured room by 14.9 dB without the device response and 2.5 dB with it (250 Hz-7 kHz)
+[06:27:33] E. Main loop: 120 units (6 passes x 20 speakers), 1 already done
+[06:28:16]   eps 0.004 seed 0 speaker  2/20   0.7 min   elapsed  0.1 h   remaining ~ 1.4 h for all passes
+[06:28:54]   eps 0.004 seed 0 speaker  3/20   0.6 min   elapsed  0.1 h   remaining ~ 1.3 h for all passes
+[06:29:32]   eps 0.004 seed 0 speaker  4/20   0.6 min   elapsed  0.1 h   remaining ~ 1.3 h for all passes
+[06:30:10]   eps 0.004 seed 0 speaker  5/20   0.6 min   elapsed  0.1 h   remaining ~ 1.3 h for all passes
+[06:30:48]   eps 0.004 seed 0 speaker  6/20   0.6 min   elapsed  0.1 h   remaining ~ 1.2 h for all passes
+[06:31:26]   eps 0.004 seed 0 speaker  7/20   0.6 min   elapsed  0.1 h   remaining ~ 1.2 h for all passes
+[06:32:05]   eps 0.004 seed 0 speaker  8/20   0.6 min   elapsed  0.1 h   remaining ~ 1.2 h for all passes
+[06:32:43]   eps 0.004 seed 0 speaker  9/20   0.6 min   elapsed  0.1 h   remaining ~ 1.2 h for all passes
+[06:33:21]   eps 0.004 seed 0 speaker 10/20   0.6 min   elapsed  0.1 h   remaining ~ 1.2 h for all passes
+[06:33:58]   eps 0.004 seed 0 speaker 11/20   0.6 min   elapsed  0.2 h   remaining ~ 1.2 h for all passes
+[06:34:36]   eps 0.004 seed 0 speaker 12/20   0.6 min   elapsed  0.2 h   remaining ~ 1.1 h for all passes
+[06:35:14]   eps 0.004 seed 0 speaker 13/20   0.6 min   elapsed  0.2 h   remaining ~ 1.1 h for all passes
+[06:35:53]   eps 0.004 seed 0 speaker 14/20   0.6 min   elapsed  0.2 h   remaining ~ 1.1 h for all passes
+[06:36:30]   eps 0.004 seed 0 speaker 15/20   0.6 min   elapsed  0.2 h   remaining ~ 1.1 h for all passes
+[06:37:08]   eps 0.004 seed 0 speaker 16/20   0.6 min   elapsed  0.2 h   remaining ~ 1.1 h for all passes
+[06:37:46]   eps 0.004 seed 0 speaker 17/20   0.6 min   elapsed  0.2 h   remaining ~ 1.1 h for all passes
+[06:38:25]   eps 0.004 seed 0 speaker 18/20   0.6 min   elapsed  0.2 h   remaining ~ 1.1 h for all passes
+[06:39:03]   eps 0.004 seed 0 speaker 19/20   0.6 min   elapsed  0.2 h   remaining ~ 1.1 h for all passes
+[06:39:41]   eps 0.004 seed 0 speaker 20/20   0.6 min   elapsed  0.3 h   remaining ~ 1.1 h for all passes
+[06:39:44]   pass eps 0.004 seed 0 finished; report updated
+[06:40:23]   eps 0.004 seed 1 speaker  1/20   0.6 min   elapsed  0.3 h   remaining ~ 1.1 h for all passes
+[06:41:01]   eps 0.004 seed 1 speaker  2/20   0.6 min   elapsed  0.3 h   remaining ~ 1.0 h for all passes
+[06:41:38]   eps 0.004 seed 1 speaker  3/20   0.6 min   elapsed  0.3 h   remaining ~ 1.0 h for all passes
+[06:42:15]   eps 0.004 seed 1 speaker  4/20   0.6 min   elapsed  0.3 h   remaining ~ 1.0 h for all passes
+[07:41:25] ======================================================================
+[07:41:26] DEVICE CONTROL RUN started 2026-10-27 07:41  (smoke=False)
+[07:41:52] GPU: Tesla T4
+[07:41:53] B. Loading encoders, rooms and thresholds from Drive
+[07:41:55]   SpeakerNet   <- /content/drive/MyDrive/PHC351_24324008_VoiceProtection/code/modelA_speaker_encoder.pt
+[07:41:55]   SpeakerNetB  <- /content/drive/MyDrive/PHC351_24324008_VoiceProtection/code/modelB_independent_judge.pt
+[07:41:56]   rooms: normalroom (RT60 0.42 s), bigroomcenter (RT60 1.05 s), bigroomcorner (RT60 1.81 s), stair (RT60 1.58 s)
+[07:41:56]   thresholds: tau_A 0.734   tau_B 0.793
+[07:41:56] A. Downloads
+[07:41:56]   downloading OpenSLR-28 rooms (1.3 GB) from https://www.openslr.org/resources/28/rirs_noises.zip ...
+[07:42:43]   unpacking simulated rooms ...
+[07:43:27]   simulated rooms: ready
+[07:43:27]   clips: 20 speakers from Drive training_data/heldout_subset (same files as the main run)
+[07:43:27] C. Simulated rooms (as in the overnight run v2)
+[07:43:28]   the paper's 200 simulated responses came from: largeroom: 200 responses in 4 rooms
+[07:43:44]   scanned 3000 simulated responses for RT60 matching (RT60 0.01-2.29 s)
+[07:43:44] D. Estimating the shared loudspeaker + microphone response (training rooms only)
+[07:43:44]   held out normalroom: estimate from bigroomcenter, bigroomcorner, stair; it differs from the held-out room by 3.5 dB on average (250 Hz-7 kHz); filter tail 1.2e-07
+[07:43:44]   held out bigroomcenter: estimate from normalroom, bigroomcorner, stair; it differs from the held-out room by 3.8 dB on average (250 Hz-7 kHz); filter tail 1.1e-07
+[07:43:44]   held out bigroomcorner: estimate from normalroom, bigroomcenter, stair; it differs from the held-out room by 2.6 dB on average (250 Hz-7 kHz); filter tail 1.1e-07
+[07:43:44]   held out stair: estimate from normalroom, bigroomcenter, bigroomcorner; it differs from the held-out room by 2.0 dB on average (250 Hz-7 kHz); filter tail 6.6e-08
+[07:43:44]   RT60-matched simulated rooms differ from their measured room by 14.9 dB without the device response and 2.5 dB with it (250 Hz-7 kHz)
+[07:43:47] E. Main loop: 120 units (6 passes x 20 speakers), 24 already done
+[07:43:50]   pass eps 0.004 seed 0 finished; report updated
+[07:44:34]   eps 0.004 seed 1 speaker  5/20   0.7 min   elapsed  0.1 h   remaining ~ 1.2 h for all passes
+[07:45:12]   eps 0.004 seed 1 speaker  6/20   0.6 min   elapsed  0.1 h   remaining ~ 1.1 h for all passes
+[07:45:48]   eps 0.004 seed 1 speaker  7/20   0.6 min   elapsed  0.1 h   remaining ~ 1.0 h for all passes
+[07:46:25]   eps 0.004 seed 1 speaker  8/20   0.6 min   elapsed  0.1 h   remaining ~ 1.0 h for all passes
+[07:47:03]   eps 0.004 seed 1 speaker  9/20   0.6 min   elapsed  0.1 h   remaining ~ 1.0 h for all passes
+[07:47:40]   eps 0.004 seed 1 speaker 10/20   0.6 min   elapsed  0.1 h   remaining ~ 1.0 h for all passes
+[07:48:16]   eps 0.004 seed 1 speaker 11/20   0.6 min   elapsed  0.1 h   remaining ~ 0.9 h for all passes
+[07:48:53]   eps 0.004 seed 1 speaker 12/20   0.6 min   elapsed  0.1 h   remaining ~ 0.9 h for all passes
+[07:49:30]   eps 0.004 seed 1 speaker 13/20   0.6 min   elapsed  0.2 h   remaining ~ 0.9 h for all passes
+[07:50:07]   eps 0.004 seed 1 speaker 14/20   0.6 min   elapsed  0.2 h   remaining ~ 0.9 h for all passes
+[07:50:43]   eps 0.004 seed 1 speaker 15/20   0.6 min   elapsed  0.2 h   remaining ~ 0.9 h for all passes
+[07:51:20]   eps 0.004 seed 1 speaker 16/20   0.6 min   elapsed  0.2 h   remaining ~ 0.9 h for all passes
+[07:51:57]   eps 0.004 seed 1 speaker 17/20   0.6 min   elapsed  0.2 h   remaining ~ 0.8 h for all passes
+[07:52:34]   eps 0.004 seed 1 speaker 18/20   0.6 min   elapsed  0.2 h   remaining ~ 0.8 h for all passes
+[07:53:11]   eps 0.004 seed 1 speaker 19/20   0.6 min   elapsed  0.2 h   remaining ~ 0.8 h for all passes
+[07:53:48]   eps 0.004 seed 1 speaker 20/20   0.6 min   elapsed  0.2 h   remaining ~ 0.8 h for all passes
+[07:53:49]   pass eps 0.004 seed 1 finished; report updated
+[07:54:27]   eps 0.004 seed 2 speaker  1/20   0.6 min   elapsed  0.2 h   remaining ~ 0.8 h for all passes
+[07:55:04]   eps 0.004 seed 2 speaker  2/20   0.6 min   elapsed  0.2 h   remaining ~ 0.8 h for all passes
+[07:55:42]   eps 0.004 seed 2 speaker  3/20   0.6 min   elapsed  0.3 h   remaining ~ 0.8 h for all passes
+[07:56:19]   eps 0.004 seed 2 speaker  4/20   0.6 min   elapsed  0.3 h   remaining ~ 0.8 h for all passes
+[07:56:56]   eps 0.004 seed 2 speaker  5/20   0.6 min   elapsed  0.3 h   remaining ~ 0.8 h for all passes
+[07:57:33]   eps 0.004 seed 2 speaker  6/20   0.6 min   elapsed  0.3 h   remaining ~ 0.8 h for all passes
+[07:58:10]   eps 0.004 seed 2 speaker  7/20   0.6 min   elapsed  0.3 h   remaining ~ 0.8 h for all passes
+[07:58:48]   eps 0.004 seed 2 speaker  8/20   0.6 min   elapsed  0.3 h   remaining ~ 0.7 h for all passes
+[07:59:25]   eps 0.004 seed 2 speaker  9/20   0.6 min   elapsed  0.3 h   remaining ~ 0.7 h for all passes
+[08:00:03]   eps 0.004 seed 2 speaker 10/20   0.6 min   elapsed  0.3 h   remaining ~ 0.7 h for all passes
+[08:00:39]   eps 0.004 seed 2 speaker 11/20   0.6 min   elapsed  0.3 h   remaining ~ 0.7 h for all passes
+[08:01:16]   eps 0.004 seed 2 speaker 12/20   0.6 min   elapsed  0.3 h   remaining ~ 0.7 h for all passes
+[08:01:53]   eps 0.004 seed 2 speaker 13/20   0.6 min   elapsed  0.4 h   remaining ~ 0.7 h for all passes
+[08:02:30]   eps 0.004 seed 2 speaker 14/20   0.6 min   elapsed  0.4 h   remaining ~ 0.7 h for all passes
+[08:03:07]   eps 0.004 seed 2 speaker 15/20   0.6 min   elapsed  0.4 h   remaining ~ 0.7 h for all passes
+[08:03:43]   eps 0.004 seed 2 speaker 16/20   0.6 min   elapsed  0.4 h   remaining ~ 0.7 h for all passes
+[08:04:20]   eps 0.004 seed 2 speaker 17/20   0.6 min   elapsed  0.4 h   remaining ~ 0.6 h for all passes
+[08:04:57]   eps 0.004 seed 2 speaker 18/20   0.6 min   elapsed  0.4 h   remaining ~ 0.6 h for all passes
+[08:05:35]   eps 0.004 seed 2 speaker 19/20   0.6 min   elapsed  0.4 h   remaining ~ 0.6 h for all passes
+[08:06:12]   eps 0.004 seed 2 speaker 20/20   0.6 min   elapsed  0.4 h   remaining ~ 0.6 h for all passes
+[08:06:13]   pass eps 0.004 seed 2 finished; report updated
+[08:06:50]   eps 0.002 seed 0 speaker  1/20   0.6 min   elapsed  0.4 h   remaining ~ 0.6 h for all passes
+[08:07:27]   eps 0.002 seed 0 speaker  2/20   0.6 min   elapsed  0.5 h   remaining ~ 0.6 h for all passes
+[08:08:04]   eps 0.002 seed 0 speaker  3/20   0.6 min   elapsed  0.5 h   remaining ~ 0.6 h for all passes
+[08:08:41]   eps 0.002 seed 0 speaker  4/20   0.6 min   elapsed  0.5 h   remaining ~ 0.6 h for all passes
+[08:09:18]   eps 0.002 seed 0 speaker  5/20   0.6 min   elapsed  0.5 h   remaining ~ 0.6 h for all passes
+[08:09:55]   eps 0.002 seed 0 speaker  6/20   0.6 min   elapsed  0.5 h   remaining ~ 0.6 h for all passes
+[08:10:32]   eps 0.002 seed 0 speaker  7/20   0.6 min   elapsed  0.5 h   remaining ~ 0.5 h for all passes
+[08:11:09]   eps 0.002 seed 0 speaker  8/20   0.6 min   elapsed  0.5 h   remaining ~ 0.5 h for all passes
+[08:11:46]   eps 0.002 seed 0 speaker  9/20   0.6 min   elapsed  0.5 h   remaining ~ 0.5 h for all passes
+[08:12:24]   eps 0.002 seed 0 speaker 10/20   0.6 min   elapsed  0.5 h   remaining ~ 0.5 h for all passes
+[08:12:59]   eps 0.002 seed 0 speaker 11/20   0.6 min   elapsed  0.5 h   remaining ~ 0.5 h for all passes
+[08:13:36]   eps 0.002 seed 0 speaker 12/20   0.6 min   elapsed  0.6 h   remaining ~ 0.5 h for all passes
+[08:14:13]   eps 0.002 seed 0 speaker 13/20   0.6 min   elapsed  0.6 h   remaining ~ 0.5 h for all passes
+[08:14:51]   eps 0.002 seed 0 speaker 14/20   0.6 min   elapsed  0.6 h   remaining ~ 0.5 h for all passes
+[08:15:27]   eps 0.002 seed 0 speaker 15/20   0.6 min   elapsed  0.6 h   remaining ~ 0.5 h for all passes
+[08:16:04]   eps 0.002 seed 0 speaker 16/20   0.6 min   elapsed  0.6 h   remaining ~ 0.5 h for all passes
+[08:16:41]   eps 0.002 seed 0 speaker 17/20   0.6 min   elapsed  0.6 h   remaining ~ 0.4 h for all passes
+[08:17:19]   eps 0.002 seed 0 speaker 18/20   0.6 min   elapsed  0.6 h   remaining ~ 0.4 h for all passes
+[08:17:55]   eps 0.002 seed 0 speaker 19/20   0.6 min   elapsed  0.6 h   remaining ~ 0.4 h for all passes
+[08:18:33]   eps 0.002 seed 0 speaker 20/20   0.6 min   elapsed  0.6 h   remaining ~ 0.4 h for all passes
+[08:18:34]   pass eps 0.002 seed 0 finished; report updated
+[08:19:11]   eps 0.002 seed 1 speaker  1/20   0.6 min   elapsed  0.6 h   remaining ~ 0.4 h for all passes
+[08:19:48]   eps 0.002 seed 1 speaker  2/20   0.6 min   elapsed  0.7 h   remaining ~ 0.4 h for all passes
+[08:20:25]   eps 0.002 seed 1 speaker  3/20   0.6 min   elapsed  0.7 h   remaining ~ 0.4 h for all passes
+[08:21:02]   eps 0.002 seed 1 speaker  4/20   0.6 min   elapsed  0.7 h   remaining ~ 0.4 h for all passes
+[08:21:39]   eps 0.002 seed 1 speaker  5/20   0.6 min   elapsed  0.7 h   remaining ~ 0.4 h for all passes
+[08:22:16]   eps 0.002 seed 1 speaker  6/20   0.6 min   elapsed  0.7 h   remaining ~ 0.3 h for all passes
+[08:22:53]   eps 0.002 seed 1 speaker  7/20   0.6 min   elapsed  0.7 h   remaining ~ 0.3 h for all passes
+[08:23:30]   eps 0.002 seed 1 speaker  8/20   0.6 min   elapsed  0.7 h   remaining ~ 0.3 h for all passes
+[08:24:08]   eps 0.002 seed 1 speaker  9/20   0.6 min   elapsed  0.7 h   remaining ~ 0.3 h for all passes
+[08:24:45]   eps 0.002 seed 1 speaker 10/20   0.6 min   elapsed  0.7 h   remaining ~ 0.3 h for all passes
+[08:25:21]   eps 0.002 seed 1 speaker 11/20   0.6 min   elapsed  0.8 h   remaining ~ 0.3 h for all passes
+[08:25:58]   eps 0.002 seed 1 speaker 12/20   0.6 min   elapsed  0.8 h   remaining ~ 0.3 h for all passes
+[08:26:34]   eps 0.002 seed 1 speaker 13/20   0.6 min   elapsed  0.8 h   remaining ~ 0.3 h for all passes
+[08:27:12]   eps 0.002 seed 1 speaker 14/20   0.6 min   elapsed  0.8 h   remaining ~ 0.3 h for all passes
+[08:27:48]   eps 0.002 seed 1 speaker 15/20   0.6 min   elapsed  0.8 h   remaining ~ 0.3 h for all passes
+[08:28:25]   eps 0.002 seed 1 speaker 16/20   0.6 min   elapsed  0.8 h   remaining ~ 0.2 h for all passes
+[08:29:02]   eps 0.002 seed 1 speaker 17/20   0.6 min   elapsed  0.8 h   remaining ~ 0.2 h for all passes
+[08:29:39]   eps 0.002 seed 1 speaker 18/20   0.6 min   elapsed  0.8 h   remaining ~ 0.2 h for all passes
+[08:30:16]   eps 0.002 seed 1 speaker 19/20   0.6 min   elapsed  0.8 h   remaining ~ 0.2 h for all passes
+[08:30:53]   eps 0.002 seed 1 speaker 20/20   0.6 min   elapsed  0.8 h   remaining ~ 0.2 h for all passes
+[08:30:55]   pass eps 0.002 seed 1 finished; report updated
+[08:31:32]   eps 0.002 seed 2 speaker  1/20   0.6 min   elapsed  0.9 h   remaining ~ 0.2 h for all passes
+[08:32:09]   eps 0.002 seed 2 speaker  2/20   0.6 min   elapsed  0.9 h   remaining ~ 0.2 h for all passes
+[08:32:46]   eps 0.002 seed 2 speaker  3/20   0.6 min   elapsed  0.9 h   remaining ~ 0.2 h for all passes
+[08:33:23]   eps 0.002 seed 2 speaker  4/20   0.6 min   elapsed  0.9 h   remaining ~ 0.2 h for all passes
+[08:34:00]   eps 0.002 seed 2 speaker  5/20   0.6 min   elapsed  0.9 h   remaining ~ 0.2 h for all passes
+[08:34:37]   eps 0.002 seed 2 speaker  6/20   0.6 min   elapsed  0.9 h   remaining ~ 0.1 h for all passes
+[08:35:14]   eps 0.002 seed 2 speaker  7/20   0.6 min   elapsed  0.9 h   remaining ~ 0.1 h for all passes
+[08:35:51]   eps 0.002 seed 2 speaker  8/20   0.6 min   elapsed  0.9 h   remaining ~ 0.1 h for all passes
+[08:36:29]   eps 0.002 seed 2 speaker  9/20   0.6 min   elapsed  0.9 h   remaining ~ 0.1 h for all passes
+[08:37:06]   eps 0.002 seed 2 speaker 10/20   0.6 min   elapsed  0.9 h   remaining ~ 0.1 h for all passes
+[08:37:42]   eps 0.002 seed 2 speaker 11/20   0.6 min   elapsed  1.0 h   remaining ~ 0.1 h for all passes
+[08:38:19]   eps 0.002 seed 2 speaker 12/20   0.6 min   elapsed  1.0 h   remaining ~ 0.1 h for all passes
+[08:38:56]   eps 0.002 seed 2 speaker 13/20   0.6 min   elapsed  1.0 h   remaining ~ 0.1 h for all passes
+[08:39:33]   eps 0.002 seed 2 speaker 14/20   0.6 min   elapsed  1.0 h   remaining ~ 0.1 h for all passes
+[08:40:10]   eps 0.002 seed 2 speaker 15/20   0.6 min   elapsed  1.0 h   remaining ~ 0.1 h for all passes
+[08:40:47]   eps 0.002 seed 2 speaker 16/20   0.6 min   elapsed  1.0 h   remaining ~ 0.0 h for all passes
+[08:41:24]   eps 0.002 seed 2 speaker 17/20   0.6 min   elapsed  1.0 h   remaining ~ 0.0 h for all passes
+[08:42:01]   eps 0.002 seed 2 speaker 18/20   0.6 min   elapsed  1.0 h   remaining ~ 0.0 h for all passes
+[08:42:38]   eps 0.002 seed 2 speaker 19/20   0.6 min   elapsed  1.0 h   remaining ~ 0.0 h for all passes
+[08:43:15]   eps 0.002 seed 2 speaker 20/20   0.6 min   elapsed  1.0 h   remaining ~ 0.0 h for all passes
+[08:43:16]   pass eps 0.002 seed 2 finished; report updated
+[08:43:17] ## What the results say (rule fixed before the run)
+
+- eps 0.004. **KEY TEST** With 3 RT60-matched simulated rooms: measured rooms still protect better than 3 RT60-matched simulated rooms WITH the device response added. The advantage is not explained by the loudspeaker and microphone alone. (equal budget: Δ = 0.007 [95% CI 0.004, 0.010], speaker-level p = 0.002, measured better in 3/4 rooms and 3/3 runs; equal SNR: Δ = 0.008 [95% CI 0.005, 0.010], speaker-level p = 7.6e-04, measured better in 4/4 rooms and 3/3 runs.)
+  - equal budget: without the device response the gap is 0.045 [0.037, 0.054]; adding it changes the simulated rooms by 0.038 [0.030, 0.046] (positive = better protection) and removes 84% of the gap (95% CI 79% to 90%).
+  - equal SNR: without the device response the gap is 0.041 [0.033, 0.050]; adding it changes the simulated rooms by 0.034 [0.026, 0.042] (positive = better protection) and removes 81% of the gap (95% CI 75% to 87%).
+- eps 0.004. With 200 processed simulated rooms: 200 processed simulated rooms WITH the device response protect better than measured rooms. (equal budget: Δ = -0.023 [95% CI -0.029, -0.018], speaker-level p = 1.7e-04, measured better in 0/4 rooms and 0/3 runs; equal SNR: Δ = -0.021 [95% CI -0.026, -0.016], speaker-level p = 1.7e-04, measured better in 0/4 rooms and 0/3 runs.)
+  - equal budget: without the device response the gap is 0.022 [0.014, 0.030]; adding it changes the simulated rooms by 0.045 [0.034, 0.056] (positive = better protection) and removes 204% of the gap (95% CI 175% to 256%).
+  - equal SNR: without the device response the gap is 0.018 [0.010, 0.026]; adding it changes the simulated rooms by 0.039 [0.029, 0.050] (positive = better protection) and removes 216% of the gap (95% CI 180% to 293%).
+- eps 0.002. **KEY TEST** With 3 RT60-matched simulated rooms: measured rooms still protect better than 3 RT60-matched simulated rooms WITH the device response added. The advantage is not explained by the loudspeaker and microphone alone. (equal budget: Δ = 0.005 [95% CI 0.002, 0.007], speaker-level p = 0.010, measured better in 4/4 rooms and 3/3 runs; equal SNR: Δ = 0.005 [95% CI 0.003, 0.007], speaker-level p = 0.008, measured better in 4/4 rooms and 3/3 runs.)
+  - equal budget: without the device response the gap is 0.023 [0.017, 0.030]; adding it changes the simulated rooms by 0.019 [0.013, 0.025] (positive = better protection) and removes 80% of the gap (95% CI 70% to 89%).
+  - equal SNR: without the device response the gap is 0.022 [0.015, 0.028]; adding it changes the simulated rooms by 0.017 [0.011, 0.023] (positive = better protection) and removes 78% of the gap (95% CI 67% to 87%).
+- eps 0.002. With 200 processed simulated rooms: 200 processed simulated rooms WITH the device response protect better than measured rooms. (equal budget: Δ = -0.017 [95% CI -0.021, -0.013], speaker-level p = 8.0e-05, measured better in 0/4 rooms and 0/3 runs; equal SNR: Δ = -0.016 [95% CI -0.020, -0.012], speaker-level p = 7.0e-05, measured better in 0/4 rooms and 0/3 runs.)
+  - equal budget: without the device response the gap is 0.008 [0.002, 0.014]; adding it changes the simulated rooms by 0.025 [0.017, 0.032] (positive = better protection) and removes 314% of the gap (95% CI 221% to 694%).
+  - equal SNR: without the device response the gap is 0.006 [0.000, 0.012]; adding it changes the simulated rooms by 0.022 [0.015, 0.029] (positive = better protection) and removes 364% of the gap (95% CI 225% to 1327%).
+
+Rule: a statement that one set of rooms protects better is made only if the 95% interval excludes 0 at BOTH equal budget and equal SNR.
+
+[08:43:17] F. Analysis written to /content/drive/MyDrive/PHC351_24324008_VoiceProtection/testing_data/results/device_control/analysis
+[08:43:17] ALL DONE in 1.0 h. Open /content/drive/MyDrive/PHC351_24324008_VoiceProtection/testing_data/results/device_control/analysis/REPORT.md and send me device_control.zip

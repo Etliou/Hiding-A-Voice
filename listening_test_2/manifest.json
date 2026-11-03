@@ -1,0 +1,926 @@
+{
+ "version": "v2",
+ "created": "2026-10-26T06:28:10",
+ "eps": 0.004,
+ "protection": "EOT over all four measured rooms, K=300, B=4, level 0.05 RMS",
+ "sr": 16000,
+ "speakers": [
+  {
+   "id": "S01",
+   "libri": "426",
+   "gender": "F",
+   "f0": 166.7,
+   "transcript": "HE'S PECULIAR ENOUGH ALL RIGHT THEN SAID MISTER HARRISON DRILY",
+   "src": {
+    "ref": "426-122819-0000.flac",
+    "test": "426-122819-0001.flac",
+    "intel": "426-122819-0015.flac"
+   },
+   "partner": "S05"
+  },
+  {
+   "id": "S02",
+   "libri": "3235",
+   "gender": "F",
+   "f0": 188.2,
+   "transcript": "AFFAIRS CONNECTED WITH MY GOLD CLAIMS WERE WITH",
+   "src": {
+    "ref": "3235-11599-0000.flac",
+    "test": "3235-11599-0001.flac",
+    "intel": "3235-28452-0019.flac"
+   },
+   "partner": "S03"
+  },
+  {
+   "id": "S03",
+   "libri": "8238",
+   "gender": "F",
+   "f0": 183.9,
+   "transcript": "WITH A FINE MARGIN AND BOUND BY DEROME",
+   "src": {
+    "ref": "8238-274553-0000.flac",
+    "test": "8238-274553-0001.flac",
+    "intel": "8238-274553-0053.flac"
+   },
+   "partner": "S05"
+  },
+  {
+   "id": "S04",
+   "libri": "403",
+   "gender": "F",
+   "f0": 340.4,
+   "transcript": "THEY'VE GOT THE CAPTAIN LOOSE AND HE'S COMING ON LIKE A DEER GET LIVELY",
+   "src": {
+    "ref": "403-126855-0001.flac",
+    "test": "403-126855-0002.flac",
+    "intel": "403-126855-0027.flac"
+   },
+   "partner": "S06"
+  },
+  {
+   "id": "S05",
+   "libri": "3983",
+   "gender": "F",
+   "f0": 182.9,
+   "transcript": "AND WITH THAT HE BURST OUT CRYING AND GAVE BILL WHITE HALF A CROWN OUT OF HIS POCKET",
+   "src": {
+    "ref": "3983-5331-0000.flac",
+    "test": "3983-5331-0001.flac",
+    "intel": "3983-5371-0039.flac"
+   },
+   "partner": "S03"
+  },
+  {
+   "id": "S06",
+   "libri": "8465",
+   "gender": "F",
+   "f0": 192.8,
+   "transcript": "THAT WOULD HAVE NO DIVISIONS OF PRIDE NO SCATTERINGS OF HATE",
+   "src": {
+    "ref": "8465-246940-0000.flac",
+    "test": "8465-246940-0001.flac",
+    "intel": "8465-246942-0010.flac"
+   },
+   "partner": "S02"
+  },
+  {
+   "id": "S07",
+   "libri": "27",
+   "gender": "M",
+   "f0": 133.3,
+   "transcript": "MESOPOTAMIA AND SYRIA SOBAL AND LIBYA",
+   "src": {
+    "ref": "27-123349-0000.flac",
+    "test": "27-123349-0002.flac",
+    "intel": "27-124992-0019.flac"
+   },
+   "partner": "S12"
+  },
+  {
+   "id": "S08",
+   "libri": "163",
+   "gender": "M",
+   "f0": 106.0,
+   "transcript": "IS PRECISELY THE SPIRITUALISING OF JUSTICE",
+   "src": {
+    "ref": "163-121908-0000.flac",
+    "test": "163-121908-0001.flac",
+    "intel": "163-122947-0022.flac"
+   },
+   "partner": "S10"
+  },
+  {
+   "id": "S09",
+   "libri": "1235",
+   "gender": "M",
+   "f0": 115.1,
+   "transcript": "THAT HIS FAMILY APPREHENDED SOMETHING CALAMITOUS HAD BEFALLEN HIM",
+   "src": {
+    "ref": "1235-135883-0000.flac",
+    "test": "1235-135883-0001.flac",
+    "intel": "1235-135883-0032.flac"
+   },
+   "partner": "S11"
+  },
+  {
+   "id": "S10",
+   "libri": "3723",
+   "gender": "M",
+   "f0": 104.6,
+   "transcript": "AND WOULDST THOU HAVE THAT AND SHALL I BE THY SON",
+   "src": {
+    "ref": "3723-171115-0000.flac",
+    "test": "3723-171115-0001.flac",
+    "intel": "3723-171631-0027.flac"
+   },
+   "partner": "S08"
+  },
+  {
+   "id": "S11",
+   "libri": "7226",
+   "gender": "M",
+   "f0": 117.2,
+   "transcript": "WITH A BIG AMMERNITION WAGIN ON BEHIND",
+   "src": {
+    "ref": "7226-86964-0000.flac",
+    "test": "7226-86964-0001.flac",
+    "intel": "7226-86965-0016.flac"
+   },
+   "partner": "S09"
+  },
+  {
+   "id": "S12",
+   "libri": "2911",
+   "gender": "M",
+   "f0": 129.0,
+   "transcript": "AND DE BAUNE AND BURGUNDIAN CHEESES SUCH AS",
+   "src": {
+    "ref": "2911-12359-0000.flac",
+    "test": "2911-12359-0001.flac",
+    "intel": "2911-12359-0006.flac"
+   },
+   "partner": "S07"
+  }
+ ],
+ "identity_trials": [
+  {
+   "id": "S01_clean_same",
+   "ref": "audio/S01_ref.wav",
+   "test": "audio/S01_test_clean.wav",
+   "truth": "same",
+   "cond": "clean_same",
+   "spk": "S01"
+  },
+  {
+   "id": "S01_prot_same",
+   "ref": "audio/S01_ref.wav",
+   "test": "audio/S01_test_prot.wav",
+   "truth": "same",
+   "cond": "prot_same",
+   "spk": "S01"
+  },
+  {
+   "id": "S01_diff",
+   "ref": "audio/S01_ref.wav",
+   "test": "audio/S05_test_clean.wav",
+   "truth": "different",
+   "cond": "diff",
+   "spk": "S01",
+   "other": "S05"
+  },
+  {
+   "id": "S02_clean_same",
+   "ref": "audio/S02_ref.wav",
+   "test": "audio/S02_test_clean.wav",
+   "truth": "same",
+   "cond": "clean_same",
+   "spk": "S02"
+  },
+  {
+   "id": "S02_prot_same",
+   "ref": "audio/S02_ref.wav",
+   "test": "audio/S02_test_prot.wav",
+   "truth": "same",
+   "cond": "prot_same",
+   "spk": "S02"
+  },
+  {
+   "id": "S02_diff",
+   "ref": "audio/S02_ref.wav",
+   "test": "audio/S03_test_clean.wav",
+   "truth": "different",
+   "cond": "diff",
+   "spk": "S02",
+   "other": "S03"
+  },
+  {
+   "id": "S03_clean_same",
+   "ref": "audio/S03_ref.wav",
+   "test": "audio/S03_test_clean.wav",
+   "truth": "same",
+   "cond": "clean_same",
+   "spk": "S03"
+  },
+  {
+   "id": "S03_prot_same",
+   "ref": "audio/S03_ref.wav",
+   "test": "audio/S03_test_prot.wav",
+   "truth": "same",
+   "cond": "prot_same",
+   "spk": "S03"
+  },
+  {
+   "id": "S03_diff",
+   "ref": "audio/S03_ref.wav",
+   "test": "audio/S05_test_clean.wav",
+   "truth": "different",
+   "cond": "diff",
+   "spk": "S03",
+   "other": "S05"
+  },
+  {
+   "id": "S04_clean_same",
+   "ref": "audio/S04_ref.wav",
+   "test": "audio/S04_test_clean.wav",
+   "truth": "same",
+   "cond": "clean_same",
+   "spk": "S04"
+  },
+  {
+   "id": "S04_prot_same",
+   "ref": "audio/S04_ref.wav",
+   "test": "audio/S04_test_prot.wav",
+   "truth": "same",
+   "cond": "prot_same",
+   "spk": "S04"
+  },
+  {
+   "id": "S04_diff",
+   "ref": "audio/S04_ref.wav",
+   "test": "audio/S06_test_clean.wav",
+   "truth": "different",
+   "cond": "diff",
+   "spk": "S04",
+   "other": "S06"
+  },
+  {
+   "id": "S05_clean_same",
+   "ref": "audio/S05_ref.wav",
+   "test": "audio/S05_test_clean.wav",
+   "truth": "same",
+   "cond": "clean_same",
+   "spk": "S05"
+  },
+  {
+   "id": "S05_prot_same",
+   "ref": "audio/S05_ref.wav",
+   "test": "audio/S05_test_prot.wav",
+   "truth": "same",
+   "cond": "prot_same",
+   "spk": "S05"
+  },
+  {
+   "id": "S05_diff",
+   "ref": "audio/S05_ref.wav",
+   "test": "audio/S03_test_clean.wav",
+   "truth": "different",
+   "cond": "diff",
+   "spk": "S05",
+   "other": "S03"
+  },
+  {
+   "id": "S06_clean_same",
+   "ref": "audio/S06_ref.wav",
+   "test": "audio/S06_test_clean.wav",
+   "truth": "same",
+   "cond": "clean_same",
+   "spk": "S06"
+  },
+  {
+   "id": "S06_prot_same",
+   "ref": "audio/S06_ref.wav",
+   "test": "audio/S06_test_prot.wav",
+   "truth": "same",
+   "cond": "prot_same",
+   "spk": "S06"
+  },
+  {
+   "id": "S06_diff",
+   "ref": "audio/S06_ref.wav",
+   "test": "audio/S02_test_clean.wav",
+   "truth": "different",
+   "cond": "diff",
+   "spk": "S06",
+   "other": "S02"
+  },
+  {
+   "id": "S07_clean_same",
+   "ref": "audio/S07_ref.wav",
+   "test": "audio/S07_test_clean.wav",
+   "truth": "same",
+   "cond": "clean_same",
+   "spk": "S07"
+  },
+  {
+   "id": "S07_prot_same",
+   "ref": "audio/S07_ref.wav",
+   "test": "audio/S07_test_prot.wav",
+   "truth": "same",
+   "cond": "prot_same",
+   "spk": "S07"
+  },
+  {
+   "id": "S07_diff",
+   "ref": "audio/S07_ref.wav",
+   "test": "audio/S12_test_clean.wav",
+   "truth": "different",
+   "cond": "diff",
+   "spk": "S07",
+   "other": "S12"
+  },
+  {
+   "id": "S08_clean_same",
+   "ref": "audio/S08_ref.wav",
+   "test": "audio/S08_test_clean.wav",
+   "truth": "same",
+   "cond": "clean_same",
+   "spk": "S08"
+  },
+  {
+   "id": "S08_prot_same",
+   "ref": "audio/S08_ref.wav",
+   "test": "audio/S08_test_prot.wav",
+   "truth": "same",
+   "cond": "prot_same",
+   "spk": "S08"
+  },
+  {
+   "id": "S08_diff",
+   "ref": "audio/S08_ref.wav",
+   "test": "audio/S10_test_clean.wav",
+   "truth": "different",
+   "cond": "diff",
+   "spk": "S08",
+   "other": "S10"
+  },
+  {
+   "id": "S09_clean_same",
+   "ref": "audio/S09_ref.wav",
+   "test": "audio/S09_test_clean.wav",
+   "truth": "same",
+   "cond": "clean_same",
+   "spk": "S09"
+  },
+  {
+   "id": "S09_prot_same",
+   "ref": "audio/S09_ref.wav",
+   "test": "audio/S09_test_prot.wav",
+   "truth": "same",
+   "cond": "prot_same",
+   "spk": "S09"
+  },
+  {
+   "id": "S09_diff",
+   "ref": "audio/S09_ref.wav",
+   "test": "audio/S11_test_clean.wav",
+   "truth": "different",
+   "cond": "diff",
+   "spk": "S09",
+   "other": "S11"
+  },
+  {
+   "id": "S10_clean_same",
+   "ref": "audio/S10_ref.wav",
+   "test": "audio/S10_test_clean.wav",
+   "truth": "same",
+   "cond": "clean_same",
+   "spk": "S10"
+  },
+  {
+   "id": "S10_prot_same",
+   "ref": "audio/S10_ref.wav",
+   "test": "audio/S10_test_prot.wav",
+   "truth": "same",
+   "cond": "prot_same",
+   "spk": "S10"
+  },
+  {
+   "id": "S10_diff",
+   "ref": "audio/S10_ref.wav",
+   "test": "audio/S08_test_clean.wav",
+   "truth": "different",
+   "cond": "diff",
+   "spk": "S10",
+   "other": "S08"
+  },
+  {
+   "id": "S11_clean_same",
+   "ref": "audio/S11_ref.wav",
+   "test": "audio/S11_test_clean.wav",
+   "truth": "same",
+   "cond": "clean_same",
+   "spk": "S11"
+  },
+  {
+   "id": "S11_prot_same",
+   "ref": "audio/S11_ref.wav",
+   "test": "audio/S11_test_prot.wav",
+   "truth": "same",
+   "cond": "prot_same",
+   "spk": "S11"
+  },
+  {
+   "id": "S11_diff",
+   "ref": "audio/S11_ref.wav",
+   "test": "audio/S09_test_clean.wav",
+   "truth": "different",
+   "cond": "diff",
+   "spk": "S11",
+   "other": "S09"
+  },
+  {
+   "id": "S12_clean_same",
+   "ref": "audio/S12_ref.wav",
+   "test": "audio/S12_test_clean.wav",
+   "truth": "same",
+   "cond": "clean_same",
+   "spk": "S12"
+  },
+  {
+   "id": "S12_prot_same",
+   "ref": "audio/S12_ref.wav",
+   "test": "audio/S12_test_prot.wav",
+   "truth": "same",
+   "cond": "prot_same",
+   "spk": "S12"
+  },
+  {
+   "id": "S12_diff",
+   "ref": "audio/S12_ref.wav",
+   "test": "audio/S07_test_clean.wav",
+   "truth": "different",
+   "cond": "diff",
+   "spk": "S12",
+   "other": "S07"
+  },
+  {
+   "id": "attention_1",
+   "ref": "audio/S04_ref.wav",
+   "test": "audio/S10_test_clean.wav",
+   "truth": "different",
+   "cond": "attention",
+   "spk": "S04",
+   "other": "S10"
+  },
+  {
+   "id": "attention_2",
+   "ref": "audio/S06_ref.wav",
+   "test": "audio/S08_test_clean.wav",
+   "truth": "different",
+   "cond": "attention",
+   "spk": "S06",
+   "other": "S08"
+  },
+  {
+   "id": "attention_3",
+   "ref": "audio/S02_ref.wav",
+   "test": "audio/S09_test_clean.wav",
+   "truth": "different",
+   "cond": "attention",
+   "spk": "S02",
+   "other": "S09"
+  }
+ ],
+ "quality_items": [
+  {
+   "id": "S01_q_clean",
+   "file": "audio/S01_test_clean.wav",
+   "cond": "clean",
+   "spk": "S01"
+  },
+  {
+   "id": "S01_q_prot",
+   "file": "audio/S01_test_prot.wav",
+   "cond": "prot",
+   "spk": "S01"
+  },
+  {
+   "id": "S02_q_clean",
+   "file": "audio/S02_test_clean.wav",
+   "cond": "clean",
+   "spk": "S02"
+  },
+  {
+   "id": "S02_q_prot",
+   "file": "audio/S02_test_prot.wav",
+   "cond": "prot",
+   "spk": "S02"
+  },
+  {
+   "id": "S03_q_clean",
+   "file": "audio/S03_test_clean.wav",
+   "cond": "clean",
+   "spk": "S03"
+  },
+  {
+   "id": "S03_q_prot",
+   "file": "audio/S03_test_prot.wav",
+   "cond": "prot",
+   "spk": "S03"
+  },
+  {
+   "id": "S04_q_clean",
+   "file": "audio/S04_test_clean.wav",
+   "cond": "clean",
+   "spk": "S04"
+  },
+  {
+   "id": "S04_q_prot",
+   "file": "audio/S04_test_prot.wav",
+   "cond": "prot",
+   "spk": "S04"
+  },
+  {
+   "id": "S05_q_clean",
+   "file": "audio/S05_test_clean.wav",
+   "cond": "clean",
+   "spk": "S05"
+  },
+  {
+   "id": "S05_q_prot",
+   "file": "audio/S05_test_prot.wav",
+   "cond": "prot",
+   "spk": "S05"
+  },
+  {
+   "id": "S06_q_clean",
+   "file": "audio/S06_test_clean.wav",
+   "cond": "clean",
+   "spk": "S06"
+  },
+  {
+   "id": "S06_q_prot",
+   "file": "audio/S06_test_prot.wav",
+   "cond": "prot",
+   "spk": "S06"
+  },
+  {
+   "id": "S07_q_clean",
+   "file": "audio/S07_test_clean.wav",
+   "cond": "clean",
+   "spk": "S07"
+  },
+  {
+   "id": "S07_q_prot",
+   "file": "audio/S07_test_prot.wav",
+   "cond": "prot",
+   "spk": "S07"
+  },
+  {
+   "id": "S08_q_clean",
+   "file": "audio/S08_test_clean.wav",
+   "cond": "clean",
+   "spk": "S08"
+  },
+  {
+   "id": "S08_q_prot",
+   "file": "audio/S08_test_prot.wav",
+   "cond": "prot",
+   "spk": "S08"
+  },
+  {
+   "id": "S09_q_clean",
+   "file": "audio/S09_test_clean.wav",
+   "cond": "clean",
+   "spk": "S09"
+  },
+  {
+   "id": "S09_q_prot",
+   "file": "audio/S09_test_prot.wav",
+   "cond": "prot",
+   "spk": "S09"
+  },
+  {
+   "id": "S10_q_clean",
+   "file": "audio/S10_test_clean.wav",
+   "cond": "clean",
+   "spk": "S10"
+  },
+  {
+   "id": "S10_q_prot",
+   "file": "audio/S10_test_prot.wav",
+   "cond": "prot",
+   "spk": "S10"
+  },
+  {
+   "id": "S11_q_clean",
+   "file": "audio/S11_test_clean.wav",
+   "cond": "clean",
+   "spk": "S11"
+  },
+  {
+   "id": "S11_q_prot",
+   "file": "audio/S11_test_prot.wav",
+   "cond": "prot",
+   "spk": "S11"
+  },
+  {
+   "id": "S12_q_clean",
+   "file": "audio/S12_test_clean.wav",
+   "cond": "clean",
+   "spk": "S12"
+  },
+  {
+   "id": "S12_q_prot",
+   "file": "audio/S12_test_prot.wav",
+   "cond": "prot",
+   "spk": "S12"
+  },
+  {
+   "id": "anchor_1",
+   "file": "audio/anchor_1.wav",
+   "cond": "anchor",
+   "spk": null
+  },
+  {
+   "id": "anchor_2",
+   "file": "audio/anchor_2.wav",
+   "cond": "anchor",
+   "spk": null
+  }
+ ],
+ "intelligibility_items": [
+  {
+   "spk": "S01",
+   "clean": "audio/S01_int_clean.wav",
+   "prot": "audio/S01_int_prot.wav",
+   "transcript": "HE'S PECULIAR ENOUGH ALL RIGHT THEN SAID MISTER HARRISON DRILY"
+  },
+  {
+   "spk": "S02",
+   "clean": "audio/S02_int_clean.wav",
+   "prot": "audio/S02_int_prot.wav",
+   "transcript": "AFFAIRS CONNECTED WITH MY GOLD CLAIMS WERE WITH"
+  },
+  {
+   "spk": "S03",
+   "clean": "audio/S03_int_clean.wav",
+   "prot": "audio/S03_int_prot.wav",
+   "transcript": "WITH A FINE MARGIN AND BOUND BY DEROME"
+  },
+  {
+   "spk": "S04",
+   "clean": "audio/S04_int_clean.wav",
+   "prot": "audio/S04_int_prot.wav",
+   "transcript": "THEY'VE GOT THE CAPTAIN LOOSE AND HE'S COMING ON LIKE A DEER GET LIVELY"
+  },
+  {
+   "spk": "S05",
+   "clean": "audio/S05_int_clean.wav",
+   "prot": "audio/S05_int_prot.wav",
+   "transcript": "AND WITH THAT HE BURST OUT CRYING AND GAVE BILL WHITE HALF A CROWN OUT OF HIS POCKET"
+  },
+  {
+   "spk": "S06",
+   "clean": "audio/S06_int_clean.wav",
+   "prot": "audio/S06_int_prot.wav",
+   "transcript": "THAT WOULD HAVE NO DIVISIONS OF PRIDE NO SCATTERINGS OF HATE"
+  },
+  {
+   "spk": "S07",
+   "clean": "audio/S07_int_clean.wav",
+   "prot": "audio/S07_int_prot.wav",
+   "transcript": "MESOPOTAMIA AND SYRIA SOBAL AND LIBYA"
+  },
+  {
+   "spk": "S08",
+   "clean": "audio/S08_int_clean.wav",
+   "prot": "audio/S08_int_prot.wav",
+   "transcript": "IS PRECISELY THE SPIRITUALISING OF JUSTICE"
+  },
+  {
+   "spk": "S09",
+   "clean": "audio/S09_int_clean.wav",
+   "prot": "audio/S09_int_prot.wav",
+   "transcript": "THAT HIS FAMILY APPREHENDED SOMETHING CALAMITOUS HAD BEFALLEN HIM"
+  },
+  {
+   "spk": "S10",
+   "clean": "audio/S10_int_clean.wav",
+   "prot": "audio/S10_int_prot.wav",
+   "transcript": "AND WOULDST THOU HAVE THAT AND SHALL I BE THY SON"
+  },
+  {
+   "spk": "S11",
+   "clean": "audio/S11_int_clean.wav",
+   "prot": "audio/S11_int_prot.wav",
+   "transcript": "WITH A BIG AMMERNITION WAGIN ON BEHIND"
+  },
+  {
+   "spk": "S12",
+   "clean": "audio/S12_int_clean.wav",
+   "prot": "audio/S12_int_prot.wav",
+   "transcript": "AND DE BAUNE AND BURGUNDIAN CHEESES SUCH AS"
+  }
+ ],
+ "calibration": {
+  "ref": "audio/calib_ref.wav",
+  "test": "audio/calib_test.wav",
+  "intel": "audio/calib_int.wav",
+  "transcript": "WAS PURSUED IN THE PLACE ROYALE WITH A BAYONET AT HIS LOINS"
+ },
+ "objective": [
+  {
+   "item": "S01_test",
+   "speaker": "S01",
+   "snr_db": 23.680288791656494,
+   "pesq_wb": 3.0720643997192383,
+   "stoi": 0.9723916379223033,
+   "estoi": 0.9022227775772348
+  },
+  {
+   "item": "S01_int",
+   "speaker": "S01",
+   "snr_db": 23.881120681762695,
+   "pesq_wb": 2.8111562728881836,
+   "stoi": 0.9723968481429894,
+   "estoi": 0.9089398758714906
+  },
+  {
+   "item": "S02_test",
+   "speaker": "S02",
+   "snr_db": 24.033513069152832,
+   "pesq_wb": 1.7537295818328857,
+   "stoi": 0.9827752757610092,
+   "estoi": 0.9506678321472751
+  },
+  {
+   "item": "S02_int",
+   "speaker": "S02",
+   "snr_db": 23.955528736114502,
+   "pesq_wb": 1.7778313159942627,
+   "stoi": 0.9606130896100428,
+   "estoi": 0.9157031549081946
+  },
+  {
+   "item": "S03_test",
+   "speaker": "S03",
+   "snr_db": 23.93315076828003,
+   "pesq_wb": 1.9008500576019287,
+   "stoi": 0.9869083940004034,
+   "estoi": 0.9436586956699663
+  },
+  {
+   "item": "S03_int",
+   "speaker": "S03",
+   "snr_db": 23.835735321044922,
+   "pesq_wb": 2.043248414993286,
+   "stoi": 0.9986001558024005,
+   "estoi": 0.9863478576500917
+  },
+  {
+   "item": "S04_test",
+   "speaker": "S04",
+   "snr_db": 24.084153175354004,
+   "pesq_wb": 1.9075058698654175,
+   "stoi": 0.8025574489677006,
+   "estoi": 0.6274034767934704
+  },
+  {
+   "item": "S04_int",
+   "speaker": "S04",
+   "snr_db": 23.685307502746582,
+   "pesq_wb": 2.0812911987304688,
+   "stoi": 0.9461927020980897,
+   "estoi": 0.8228817713082879
+  },
+  {
+   "item": "S05_test",
+   "speaker": "S05",
+   "snr_db": 23.64192485809326,
+   "pesq_wb": 2.0964319705963135,
+   "stoi": 0.9792718958086004,
+   "estoi": 0.9183015533226181
+  },
+  {
+   "item": "S05_int",
+   "speaker": "S05",
+   "snr_db": 23.665552139282227,
+   "pesq_wb": 2.0215377807617188,
+   "stoi": 0.9677888175659596,
+   "estoi": 0.8763275569454394
+  },
+  {
+   "item": "S06_test",
+   "speaker": "S06",
+   "snr_db": 24.246134757995605,
+   "pesq_wb": 1.9863313436508179,
+   "stoi": 0.9719780456918443,
+   "estoi": 0.9354417417919606
+  },
+  {
+   "item": "S06_int",
+   "speaker": "S06",
+   "snr_db": 23.7099027633667,
+   "pesq_wb": 1.8766775131225586,
+   "stoi": 0.9859559631171455,
+   "estoi": 0.9487413745302418
+  },
+  {
+   "item": "S07_test",
+   "speaker": "S07",
+   "snr_db": 23.201305866241455,
+   "pesq_wb": 2.419633150100708,
+   "stoi": 0.9896873465973324,
+   "estoi": 0.9268617866169876
+  },
+  {
+   "item": "S07_int",
+   "speaker": "S07",
+   "snr_db": 23.645641803741455,
+   "pesq_wb": 2.3691439628601074,
+   "stoi": 0.966942689332657,
+   "estoi": 0.8769881416573618
+  },
+  {
+   "item": "S08_test",
+   "speaker": "S08",
+   "snr_db": 24.26778793334961,
+   "pesq_wb": 1.6525075435638428,
+   "stoi": 0.7190678309886499,
+   "estoi": 0.5424448287800501
+  },
+  {
+   "item": "S08_int",
+   "speaker": "S08",
+   "snr_db": 23.64607572555542,
+   "pesq_wb": 1.9414342641830444,
+   "stoi": 0.9494031218937625,
+   "estoi": 0.8344004979454149
+  },
+  {
+   "item": "S09_test",
+   "speaker": "S09",
+   "snr_db": 23.95934820175171,
+   "pesq_wb": 2.0481886863708496,
+   "stoi": 0.9682895056064976,
+   "estoi": 0.8758279832081178
+  },
+  {
+   "item": "S09_int",
+   "speaker": "S09",
+   "snr_db": 23.80232810974121,
+   "pesq_wb": 1.9702188968658447,
+   "stoi": 0.91949674571654,
+   "estoi": 0.8421284189113237
+  },
+  {
+   "item": "S10_test",
+   "speaker": "S10",
+   "snr_db": 23.880293369293213,
+   "pesq_wb": 2.34975004196167,
+   "stoi": 0.9846640066060155,
+   "estoi": 0.9374187617447602
+  },
+  {
+   "item": "S10_int",
+   "speaker": "S10",
+   "snr_db": 24.117350578308105,
+   "pesq_wb": 2.1818008422851562,
+   "stoi": 0.9645561017167106,
+   "estoi": 0.8744686454419923
+  },
+  {
+   "item": "S11_test",
+   "speaker": "S11",
+   "snr_db": 24.296927452087402,
+   "pesq_wb": 1.6403617858886719,
+   "stoi": 0.9784842086315468,
+   "estoi": 0.8986969331715746
+  },
+  {
+   "item": "S11_int",
+   "speaker": "S11",
+   "snr_db": 24.026005268096924,
+   "pesq_wb": 1.8512157201766968,
+   "stoi": 0.9945232222268665,
+   "estoi": 0.9833517395964956
+  },
+  {
+   "item": "S12_test",
+   "speaker": "S12",
+   "snr_db": 24.137744903564453,
+   "pesq_wb": 1.9945982694625854,
+   "stoi": 0.9604003430313067,
+   "estoi": 0.8340583472185177
+  },
+  {
+   "item": "S12_int",
+   "speaker": "S12",
+   "snr_db": 24.218027591705322,
+   "pesq_wb": 2.1459059715270996,
+   "stoi": 0.9344314773759029,
+   "estoi": 0.8431444449423399
+  }
+ ]
+}

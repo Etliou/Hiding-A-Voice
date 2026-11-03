@@ -1,0 +1,425 @@
+{
+ "started": "2026-10-26T10:12:09",
+ "smoke": false,
+ "python": "3.13.16",
+ "torch": "2.11.0+cu130",
+ "device": "cuda",
+ "gpu": "Tesla T4",
+ "filterbank": "torchaudio 2.11.0+cu130",
+ "K": 300,
+ "B": 4,
+ "passes": [
+  [
+   0.004,
+   0
+  ],
+  [
+   0.004,
+   1
+  ],
+  [
+   0.004,
+   2
+  ],
+  [
+   0.002,
+   0
+  ],
+  [
+   0.002,
+   1
+  ],
+  [
+   0.002,
+   2
+  ],
+  [
+   0.004,
+   3
+  ],
+  [
+   0.004,
+   4
+  ]
+ ],
+ "modelA": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/code/modelA_speaker_encoder.pt",
+ "modelB": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/code/modelB_independent_judge.pt",
+ "tau": {
+  "A": 0.7338669334667332,
+  "B": 0.7928964482241119
+ },
+ "rooms": [
+  "normalroom",
+  "bigroomcenter",
+  "bigroomcorner",
+  "stair"
+ ],
+ "held_source": "Drive training_data/heldout_subset (same files as the main run)",
+ "clips": [
+  {
+   "si": 0,
+   "spk": "1235",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/1235_1235-135883-0003.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/1235_1235-135883-0001.flac"
+  },
+  {
+   "si": 1,
+   "spk": "1455",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/1455_1455-134435-0001.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/1455_1455-134435-0002.flac"
+  },
+  {
+   "si": 2,
+   "spk": "1624",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/1624_1624-142933-0000.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/1624_1624-142933-0003.flac"
+  },
+  {
+   "si": 3,
+   "spk": "163",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/163_163-121908-0001.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/163_163-121908-0002.flac"
+  },
+  {
+   "si": 4,
+   "spk": "1963",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/1963_1963-142393-0001.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/1963_1963-142393-0003.flac"
+  },
+  {
+   "si": 5,
+   "spk": "198",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/198_198-126831-0002.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/198_198-126831-0003.flac"
+  },
+  {
+   "si": 6,
+   "spk": "233",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/233_233-134440-0000.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/233_233-134440-0001.flac"
+  },
+  {
+   "si": 7,
+   "spk": "2416",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/2416_2416-152137-0002.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/2416_2416-152137-0000.flac"
+  },
+  {
+   "si": 8,
+   "spk": "27",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/27_27-123349-0001.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/27_27-123349-0003.flac"
+  },
+  {
+   "si": 9,
+   "spk": "2817",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/2817_2817-142371-0003.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/2817_2817-142371-0002.flac"
+  },
+  {
+   "si": 10,
+   "spk": "2911",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/2911_2911-12359-0000.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/2911_2911-12359-0001.flac"
+  },
+  {
+   "si": 11,
+   "spk": "307",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/307_307-127535-0003.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/307_307-127535-0002.flac"
+  },
+  {
+   "si": 12,
+   "spk": "3112",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3112_3112-9554-0003.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3112_3112-9554-0001.flac"
+  },
+  {
+   "si": 13,
+   "spk": "3168",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3168_3168-173564-0002.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3168_3168-173564-0001.flac"
+  },
+  {
+   "si": 14,
+   "spk": "3235",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3235_3235-11599-0000.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3235_3235-11599-0002.flac"
+  },
+  {
+   "si": 15,
+   "spk": "3374",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3374_3374-298025-0001.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3374_3374-298025-0000.flac"
+  },
+  {
+   "si": 16,
+   "spk": "3436",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3436_3436-172162-0002.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3436_3436-172162-0001.flac"
+  },
+  {
+   "si": 17,
+   "spk": "3723",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3723_3723-171115-0003.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3723_3723-171115-0001.flac"
+  },
+  {
+   "si": 18,
+   "spk": "3879",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3879_3879-173592-0001.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3879_3879-173592-0000.flac"
+  },
+  {
+   "si": 19,
+   "spk": "3983",
+   "src_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3983_3983-5331-0000.flac",
+   "enr_file": "/content/drive/MyDrive/PHC351_24324008_VoiceProtection/training_data/heldout_subset/3983_3983-5331-0002.flac"
+  }
+ ],
+ "reproduction": {
+  "reference": "bare sweep",
+  "worst_room_similarity": 1.000000238418579
+ },
+ "ablation_rt60": {
+  "abl_no_freqreg": {
+   "normalroom": 0.6193125,
+   "bigroomcenter": 1.32375,
+   "bigroomcorner": 2.3049375,
+   "stair": 1.6845
+  },
+  "abl_no_blend": {
+   "normalroom": 0.4126875,
+   "bigroomcenter": 1.05825,
+   "bigroomcorner": 1.8155625,
+   "stair": 1.581
+  },
+  "abl_no_prenorm": {
+   "normalroom": 0.0043125,
+   "bigroomcenter": 0.0043125,
+   "bigroomcorner": 0.004125,
+   "stair": 0.0065625
+  },
+  "abl_naive": {
+   "normalroom": 2.17425,
+   "bigroomcenter": 0.4726875,
+   "bigroomcorner": 1.827,
+   "stair": 1.7536875
+  }
+ },
+ "ablation_base": "meas_full",
+ "paper_sim_pool": {
+  "largeroom": {
+   "n_rirs": 200,
+   "n_rooms": 4,
+   "rooms": [
+    "Room001",
+    "Room002",
+    "Room003",
+    "Room004"
+   ]
+  }
+ },
+ "paper_sim_pool_rt60": [
+  0.1036875,
+  1.7154375,
+  0.34275,
+  1.7064375,
+  1.6179375,
+  0.6616875,
+  1.538625,
+  1.71075,
+  0.6924375,
+  0.0946875,
+  0.510375,
+  0.291375,
+  0.07725,
+  0.2431875,
+  0.6688125,
+  1.7923125,
+  0.6193125,
+  1.53975,
+  1.2256875,
+  0.6260625,
+  0.6931875,
+  1.758375,
+  1.5571875,
+  0.06075,
+  0.0646875,
+  1.803,
+  1.8523125,
+  1.8039375,
+  1.80375,
+  1.2465,
+  0.4858125,
+  1.6070625,
+  0.075,
+  0.0826875,
+  0.473625,
+  1.5915,
+  1.650375,
+  0.5115,
+  1.45725,
+  0.5641875,
+  0.594375,
+  1.507875,
+  1.588125,
+  0.613875,
+  1.64925,
+  1.2931875,
+  0.685125,
+  0.3406875,
+  1.5774375,
+  1.6861875,
+  1.5845625,
+  0.2086875,
+  0.0735,
+  1.7716875,
+  1.8324375,
+  1.704,
+  0.6751875,
+  1.6381875,
+  1.7596875,
+  0.7005,
+  0.619875,
+  0.0765,
+  0.5068125,
+  0.5098125,
+  1.693125,
+  0.7475625,
+  0.2506875,
+  1.8459375,
+  1.857375,
+  1.648125,
+  0.6549375,
+  1.06425,
+  1.3861875,
+  1.7120625,
+  0.447,
+  1.737375,
+  0.360375,
+  1.12575,
+  1.76475,
+  1.713375,
+  1.7034375,
+  1.8568125,
+  0.3320625,
+  1.8465,
+  1.6479375,
+  1.8050625,
+  1.738875,
+  1.8575625,
+  1.6239375,
+  0.3673125,
+  1.0599375,
+  0.6001875,
+  0.50925,
+  0.7314375,
+  1.7664375,
+  1.6831875,
+  1.6205625,
+  1.77975,
+  1.7895,
+  0.1104375,
+  1.85175,
+  1.7896875,
+  1.543875,
+  0.234375,
+  1.7835,
+  1.6805625,
+  0.666375,
+  0.6826875,
+  1.6689375,
+  0.4535625,
+  0.313125,
+  0.695625,
+  0.634125,
+  0.6271875,
+  1.7325,
+  0.3,
+  1.838625,
+  1.654125,
+  0.5116875,
+  1.7458125,
+  0.6376875,
+  0.223125,
+  1.0665,
+  0.6770625,
+  1.560375,
+  0.4635,
+  1.59225,
+  1.64025,
+  0.4591875,
+  1.4443125,
+  1.227,
+  1.786875,
+  1.7041875,
+  0.7485,
+  1.65225,
+  1.702875,
+  1.6100625,
+  1.1431875,
+  0.759375,
+  1.6614375,
+  1.6843125,
+  0.331125,
+  0.3406875,
+  0.6735,
+  0.64125,
+  0.29625,
+  0.2960625,
+  1.5691875,
+  0.2694375,
+  0.6313125,
+  1.699875,
+  1.8571875,
+  0.7273125,
+  1.6588125,
+  1.654875,
+  0.4681875,
+  1.5834375,
+  0.569625,
+  0.3268125,
+  0.3755625,
+  1.637625,
+  1.787625,
+  1.676625,
+  0.310875,
+  1.3035,
+  0.3405,
+  0.7235625,
+  0.64875,
+  1.70325,
+  1.4836875,
+  1.668375,
+  1.527,
+  0.321,
+  0.2625,
+  0.4561875,
+  0.7044375,
+  0.298125,
+  0.28575,
+  1.5110625,
+  0.2521875,
+  1.74525,
+  1.8465,
+  1.6381875,
+  0.321375,
+  1.8185625,
+  1.7071875,
+  1.7465625,
+  0.237375,
+  1.5429375,
+  1.7805,
+  1.1353125,
+  0.3365625,
+  1.845375,
+  1.6515,
+  1.581375,
+  1.74075,
+  0.745875,
+  1.7011875,
+  1.8455625,
+  1.7405625
+ ]
+}

@@ -1,0 +1,314 @@
+{
+ "0|normalroom": [
+  {
+   "i": 1533,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room105/Room105-00028.wav",
+   "size": "mediumroom",
+   "rt60": 1.0505625,
+   "target_room": "bigroomcenter",
+   "target_rt60": 1.052625
+  },
+  {
+   "i": 157,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room035/Room035-00078.wav",
+   "size": "largeroom",
+   "rt60": 1.8129375,
+   "target_room": "bigroomcorner",
+   "target_rt60": 1.80825
+  },
+  {
+   "i": 1262,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room050/Room050-00038.wav",
+   "size": "mediumroom",
+   "rt60": 1.5759375,
+   "target_room": "stair",
+   "target_rt60": 1.5796875
+  }
+ ],
+ "0|bigroomcenter": [
+  {
+   "i": 1609,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room121/Room121-00053.wav",
+   "size": "mediumroom",
+   "rt60": 0.414375,
+   "target_room": "normalroom",
+   "target_rt60": 0.415875
+  },
+  {
+   "i": 3,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room002/Room002-00061.wav",
+   "size": "largeroom",
+   "rt60": 1.803,
+   "target_room": "bigroomcorner",
+   "target_rt60": 1.80825
+  },
+  {
+   "i": 1262,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room050/Room050-00038.wav",
+   "size": "mediumroom",
+   "rt60": 1.5759375,
+   "target_room": "stair",
+   "target_rt60": 1.5796875
+  }
+ ],
+ "0|bigroomcorner": [
+  {
+   "i": 1420,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room083/Room083-00059.wav",
+   "size": "mediumroom",
+   "rt60": 0.416625,
+   "target_room": "normalroom",
+   "target_rt60": 0.415875
+  },
+  {
+   "i": 1533,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room105/Room105-00028.wav",
+   "size": "mediumroom",
+   "rt60": 1.0505625,
+   "target_room": "bigroomcenter",
+   "target_rt60": 1.052625
+  },
+  {
+   "i": 907,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room183/Room183-00006.wav",
+   "size": "largeroom",
+   "rt60": 1.582875,
+   "target_room": "stair",
+   "target_rt60": 1.5796875
+  }
+ ],
+ "0|stair": [
+  {
+   "i": 1420,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room083/Room083-00059.wav",
+   "size": "mediumroom",
+   "rt60": 0.416625,
+   "target_room": "normalroom",
+   "target_rt60": 0.415875
+  },
+  {
+   "i": 1138,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room028/Room028-00058.wav",
+   "size": "mediumroom",
+   "rt60": 1.0535625,
+   "target_room": "bigroomcenter",
+   "target_rt60": 1.052625
+  },
+  {
+   "i": 325,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room069/Room069-00056.wav",
+   "size": "largeroom",
+   "rt60": 1.80825,
+   "target_room": "bigroomcorner",
+   "target_rt60": 1.80825
+  }
+ ],
+ "1|normalroom": [
+  {
+   "i": 1533,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room105/Room105-00028.wav",
+   "size": "mediumroom",
+   "rt60": 1.0505625,
+   "target_room": "bigroomcenter",
+   "target_rt60": 1.052625
+  },
+  {
+   "i": 508,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room107/Room107-00084.wav",
+   "size": "largeroom",
+   "rt60": 1.8099375,
+   "target_room": "bigroomcorner",
+   "target_rt60": 1.80825
+  },
+  {
+   "i": 907,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room183/Room183-00006.wav",
+   "size": "largeroom",
+   "rt60": 1.582875,
+   "target_room": "stair",
+   "target_rt60": 1.5796875
+  }
+ ],
+ "1|bigroomcenter": [
+  {
+   "i": 1420,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room083/Room083-00059.wav",
+   "size": "mediumroom",
+   "rt60": 0.416625,
+   "target_room": "normalroom",
+   "target_rt60": 0.415875
+  },
+  {
+   "i": 3,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room002/Room002-00061.wav",
+   "size": "largeroom",
+   "rt60": 1.803,
+   "target_room": "bigroomcorner",
+   "target_rt60": 1.80825
+  },
+  {
+   "i": 575,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room120/Room120-00068.wav",
+   "size": "largeroom",
+   "rt60": 1.578375,
+   "target_room": "stair",
+   "target_rt60": 1.5796875
+  }
+ ],
+ "1|bigroomcorner": [
+  {
+   "i": 1598,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room119/Room119-00098.wav",
+   "size": "mediumroom",
+   "rt60": 0.4171875,
+   "target_room": "normalroom",
+   "target_rt60": 0.415875
+  },
+  {
+   "i": 280,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room058/Room058-00099.wav",
+   "size": "largeroom",
+   "rt60": 1.052625,
+   "target_room": "bigroomcenter",
+   "target_rt60": 1.052625
+  },
+  {
+   "i": 575,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room120/Room120-00068.wav",
+   "size": "largeroom",
+   "rt60": 1.578375,
+   "target_room": "stair",
+   "target_rt60": 1.5796875
+  }
+ ],
+ "1|stair": [
+  {
+   "i": 1834,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room165/Room165-00070.wav",
+   "size": "mediumroom",
+   "rt60": 0.4155,
+   "target_room": "normalroom",
+   "target_rt60": 0.415875
+  },
+  {
+   "i": 1533,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room105/Room105-00028.wav",
+   "size": "mediumroom",
+   "rt60": 1.0505625,
+   "target_room": "bigroomcenter",
+   "target_rt60": 1.052625
+  },
+  {
+   "i": 3,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room002/Room002-00061.wav",
+   "size": "largeroom",
+   "rt60": 1.803,
+   "target_room": "bigroomcorner",
+   "target_rt60": 1.80825
+  }
+ ],
+ "2|normalroom": [
+  {
+   "i": 830,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room171/Room171-00018.wav",
+   "size": "largeroom",
+   "rt60": 1.0528125,
+   "target_room": "bigroomcenter",
+   "target_rt60": 1.052625
+  },
+  {
+   "i": 325,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room069/Room069-00056.wav",
+   "size": "largeroom",
+   "rt60": 1.80825,
+   "target_room": "bigroomcorner",
+   "target_rt60": 1.80825
+  },
+  {
+   "i": 907,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room183/Room183-00006.wav",
+   "size": "largeroom",
+   "rt60": 1.582875,
+   "target_room": "stair",
+   "target_rt60": 1.5796875
+  }
+ ],
+ "2|bigroomcenter": [
+  {
+   "i": 1834,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room165/Room165-00070.wav",
+   "size": "mediumroom",
+   "rt60": 0.4155,
+   "target_room": "normalroom",
+   "target_rt60": 0.415875
+  },
+  {
+   "i": 3,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room002/Room002-00061.wav",
+   "size": "largeroom",
+   "rt60": 1.803,
+   "target_room": "bigroomcorner",
+   "target_rt60": 1.80825
+  },
+  {
+   "i": 55,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room012/Room012-00032.wav",
+   "size": "largeroom",
+   "rt60": 1.5815625,
+   "target_room": "stair",
+   "target_rt60": 1.5796875
+  }
+ ],
+ "2|bigroomcorner": [
+  {
+   "i": 1598,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room119/Room119-00098.wav",
+   "size": "mediumroom",
+   "rt60": 0.4171875,
+   "target_room": "normalroom",
+   "target_rt60": 0.415875
+  },
+  {
+   "i": 1910,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room180/Room180-00093.wav",
+   "size": "mediumroom",
+   "rt60": 1.0520625,
+   "target_room": "bigroomcenter",
+   "target_rt60": 1.052625
+  },
+  {
+   "i": 575,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room120/Room120-00068.wav",
+   "size": "largeroom",
+   "rt60": 1.578375,
+   "target_room": "stair",
+   "target_rt60": 1.5796875
+  }
+ ],
+ "2|stair": [
+  {
+   "i": 1420,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room083/Room083-00059.wav",
+   "size": "mediumroom",
+   "rt60": 0.416625,
+   "target_room": "normalroom",
+   "target_rt60": 0.415875
+  },
+  {
+   "i": 1138,
+   "file": "/content/RIRS_NOISES/simulated_rirs/mediumroom/Room028/Room028-00058.wav",
+   "size": "mediumroom",
+   "rt60": 1.0535625,
+   "target_room": "bigroomcenter",
+   "target_rt60": 1.052625
+  },
+  {
+   "i": 508,
+   "file": "/content/RIRS_NOISES/simulated_rirs/largeroom/Room107/Room107-00084.wav",
+   "size": "largeroom",
+   "rt60": 1.8099375,
+   "target_room": "bigroomcorner",
+   "target_rt60": 1.80825
+  }
+ ]
+}

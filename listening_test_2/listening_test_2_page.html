@@ -1,0 +1,809 @@
+<title>Voice Protection Listening Test 2</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one column, instrument panel (same identity as test 1): header, one task card at a time, progress rail */
+:root{
+  --bg:#f2f3f4; --surface:#ffffff; --sunk:#e7e9ec;
+  --fg:#15191e; --muted:#5d6670; --line:#d2d7dd;
+  --accent:#2e6fa7; --warm:#d55e00; --good:#2d7a4f; --onaccent:#ffffff;
+  --sans:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101417; --surface:#181d22; --sunk:#0b0e11;
+  --fg:#e7ecf1; --muted:#949ea9; --line:#2a3138;
+  --accent:#6fa8d8; --warm:#f0813a; --good:#5bb183; --onaccent:#0b0e11; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --bg:#101417; --surface:#181d22; --sunk:#0b0e11;
+  --fg:#e7ecf1; --muted:#949ea9; --line:#2a3138;
+  --accent:#6fa8d8; --warm:#f0813a; --good:#5bb183; --onaccent:#0b0e11; color-scheme:dark;}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:20px 56px}
+.wrap{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;
+  border-bottom:1px solid var(--line);padding-bottom:12px}
+h1{font-size:19px;font-weight:600;margin:0;letter-spacing:-0.01em;text-wrap:balance}
+h2{font-size:12.5px;font-weight:600;margin:0;text-transform:uppercase;letter-spacing:0.09em;color:var(--muted)}
+h3{font-size:16px;font-weight:600;margin:0;text-wrap:balance}
+p{margin:0}
+.sub{color:var(--muted);font-size:13px}
+.note{font-size:13px;color:var(--muted);line-height:1.55}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;
+  display:flex;flex-direction:column;gap:14px;min-width:0}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.stack{display:flex;flex-direction:column;gap:8px}
+nav{display:flex;gap:2px;background:var(--sunk);padding:3px;border-radius:8px}
+nav button{font:inherit;font-size:13px;border:0;background:none;color:var(--muted);padding:6px 13px;border-radius:6px;cursor:pointer}
+nav button[aria-pressed="true"]{background:var(--surface);color:var(--fg);font-weight:500}
+.banner{border:1px dashed var(--warm);color:var(--fg);background:color-mix(in srgb,var(--warm) 8%,var(--surface));
+  border-radius:8px;padding:10px 12px;font-size:13px}
+ol.steps{display:flex;flex-direction:column;gap:9px;margin:0;padding-left:20px}
+ol.steps b{font-weight:600}
+label.lab{font-size:12px;color:var(--muted);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.07em}
+input[type=text],input[type=password],textarea{font:inherit;width:100%;padding:11px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--fg)}
+textarea{font-family:var(--mono);font-size:12px;line-height:1.5;resize:vertical}
+fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+legend{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;padding:0}
+.choices{display:flex;gap:6px;flex-wrap:wrap}
+.choice{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--surface);color:var(--fg);
+  padding:9px 12px;border-radius:8px;cursor:pointer;min-height:42px}
+.choice[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);
+  background:color-mix(in srgb,var(--accent) 9%,var(--surface))}
+button.act{font:inherit;font-weight:500;border:1px solid var(--line);background:var(--surface);color:var(--fg);
+  padding:11px 18px;border-radius:8px;cursor:pointer;min-height:44px}
+button.act:hover:not(:disabled){border-color:var(--accent)}
+button.act:disabled{opacity:.4;cursor:not-allowed}
+button.prime{background:var(--accent);border-color:var(--accent);color:var(--onaccent)}
+button.prime:hover:not(:disabled){filter:brightness(1.08)}
+button.play{font-family:var(--mono);font-size:15px;flex:1;min-width:130px;padding:18px 14px}
+button.play.done{border-color:var(--accent);color:var(--accent)}
+button.play.playing{border-color:var(--accent);color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
+button.ans{flex:1;min-width:140px;padding:16px;font-size:15px}
+button.ans.same[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
+button.ans.diff[aria-pressed="true"]{border-color:var(--warm);box-shadow:inset 0 0 0 2px var(--warm)}
+.scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.scale button{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px;min-height:64px}
+.scale b{font-family:var(--mono);font-size:18px}
+.scale span{font-size:11.5px;color:var(--muted)}
+.scale button[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.rail{display:flex;gap:3px}
+.rail i{height:4px;flex:1;background:var(--sunk);border-radius:2px}
+.rail i.on{background:var(--accent)}
+.meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.tag{font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:4px;background:var(--sunk);color:var(--muted)}
+.prompt{font-size:16.5px;font-weight:500}
+.mono{font-family:var(--mono)}
+.big{font-family:var(--mono);font-size:30px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.meter{height:6px;background:var(--sunk);border-radius:3px;overflow:hidden}
+.meter span{display:block;height:100%;width:0;background:var(--accent);transition:width .2s}
+.ok{color:var(--good);font-weight:600}
+.warn{color:var(--warm);font-weight:600}
+.scroll{overflow-x:auto;min-width:0}
+table.ledger{width:100%;border-collapse:collapse;font-size:13px}
+.ledger th{text-align:left;font-weight:500;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.07em;
+  padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+.ledger td{padding:8px;border-bottom:1px solid var(--line);font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ledger td:first-child{font-family:var(--sans);white-space:normal;min-width:150px}
+.codebox{font-family:var(--mono);font-size:11.5px;word-break:break-all;background:var(--sunk);border-radius:8px;padding:10px;
+  max-height:180px;overflow:auto;user-select:all;-webkit-user-select:all}
+.research{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:9px}
+.linkbtn{font:inherit;font-size:12.5px;border:0;background:none;color:var(--muted);cursor:pointer;padding:0;
+  text-decoration:underline;align-self:flex-start}
+#resPass{flex:1;min-width:150px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:420px){.scale span{font-size:10.5px}.scale b{font-size:16px}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Voice Protection Listening Test 2</h1>
+      <p class="sub" id="tagline">About 5 minutes &middot; headphones or earphones needed</p>
+    </div>
+    <nav id="nav" hidden>
+      <button id="tabTest" aria-pressed="true">Test</button>
+      <button id="tabRes" aria-pressed="false">Results</button>
+      <button id="tabLock" aria-pressed="false">Lock</button>
+    </nav>
+  </header>
+
+  <p class="banner" id="demoBanner" hidden>Preview: the real voice clips are not in this page yet, so you hear
+    placeholder tones. Answers given in the preview are marked as preview and never counted.</p>
+
+  <!-- ===================== WELCOME ===================== -->
+  <section class="card" id="sWelcome">
+    <h2>Before you start</h2>
+    <p>This test is part of a research project at IIT Roorkee on protecting voices from AI speaker recognition.
+      You will hear short recordings of read English sentences and answer three kinds of questions:</p>
+    <ol class="steps">
+      <li><b>Type what you hear</b> for 4 short sentences.</li>
+      <li><b>Same person or not</b>: 14 pairs of short clips.</li>
+      <li><b>Rate the sound quality</b> of 9 clips from 1 to 5.</li>
+    </ol>
+    <p class="note">Please use <b>headphones or earphones</b> in a quiet place. On an iPhone, turn off silent mode. A short tone check at the start tells
+      whether headphones are on. There are no trick questions; your honest impression is the data. Your name and
+      answers are used only for this project and are locked so that only the researcher can read them. No voice is
+      recorded and you can stop at any time.</p>
+    <div class="stack">
+      <p class="sub" id="loadMsg">Loading the sound clips&hellip;</p>
+      <div class="meter" aria-hidden="true"><span id="loadBar"></span></div>
+    </div>
+    <label for="consent" style="display:flex;gap:10px;align-items:flex-start;cursor:pointer">
+      <input type="checkbox" id="consent" style="width:20px;height:20px;margin:2px 0 0;flex:none">
+      <span style="flex:1;min-width:0">I agree to take part.</span>
+    </label>
+    <div class="row">
+      <button class="act prime" id="startBtn" disabled>Start</button>
+      <button class="act" id="resumeBtn" hidden>Continue where I stopped</button>
+      <span class="sub" id="startMsg"></span>
+    </div>
+    <div class="research">
+      <button type="button" class="linkbtn" id="resLink">Researcher access</button>
+      <form class="row" id="resBox" hidden>
+        <input type="password" id="resPass" autocomplete="off" placeholder="password" aria-label="Researcher password">
+        <button class="act" id="resGo" type="submit">Unlock</button>
+        <span class="sub" id="resMsg"></span>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT YOU ===================== -->
+  <section class="card" id="sAbout" hidden>
+    <h2>About your listening set-up</h2>
+    <div>
+      <label class="lab" for="pname">Your name</label>
+      <input type="text" id="pname" autocomplete="name" autocapitalize="words" spellcheck="false" placeholder="e.g. Bhavishay">
+    </div>
+    <fieldset id="fDev"><legend>What will you listen with?</legend><div class="choices" data-key="dev"></div></fieldset>
+    <fieldset id="fEnv"><legend>Where are you?</legend><div class="choices" data-key="env"></div></fieldset>
+    <fieldset id="fEng"><legend>Your English</legend><div class="choices" data-key="eng"></div></fieldset>
+    <fieldset id="fHear"><legend>Any known hearing difficulty?</legend><div class="choices" data-key="hear"></div></fieldset>
+    <div class="row"><button class="act prime" id="aboutNext" disabled>Next</button><span class="sub">Write your name and answer the four questions to continue.</span></div>
+  </section>
+
+  <!-- ===================== VOLUME ===================== -->
+  <section class="card" id="sVolume" hidden>
+    <h2>Set your volume</h2>
+    <p>Play this sentence and set your volume so it is clear and comfortable. Then <b>leave the volume alone</b>
+      for the rest of the test.</p>
+    <div class="row"><button class="act play" id="volPlay">&#9654; Play sentence</button></div>
+    <div class="row"><button class="act prime" id="volNext" disabled>The volume is set</button></div>
+  </section>
+
+  <!-- ===================== HEADPHONE CHECK ===================== -->
+  <section class="card" id="sHp" hidden>
+    <div class="rail" id="hpRail"></div>
+    <div class="meta"><h2 id="hpNum">Tone check 1 of 3</h2><span class="tag">headphone check</span></div>
+    <p class="prompt">You will hear three tones. Which one is the <b>quietest</b>?</p>
+    <p class="note">You can play each set once. The tones are soft; do not turn the volume up.</p>
+    <div class="row"><button class="act play" id="hpPlay">&#9654; Play the three tones</button></div>
+    <div class="row" id="hpAns">
+      <button class="act ans choice" data-v="0" disabled>First</button>
+      <button class="act ans choice" data-v="1" disabled>Second</button>
+      <button class="act ans choice" data-v="2" disabled>Third</button>
+    </div>
+  </section>
+  <section class="card" id="sHpDone" hidden>
+    <h2>Tone check finished</h2>
+    <p id="hpResult"></p>
+    <div class="row"><button class="act prime" id="hpDoneNext">Continue to part 1</button></div>
+  </section>
+
+  <!-- ===================== INTRO CARDS ===================== -->
+  <section class="card" id="sIntro" hidden>
+    <div class="meta"><h2 id="introPart">Part 1 of 3</h2><span class="tag" id="introTag"></span></div>
+    <h3 id="introTitle"></h3>
+    <p id="introText"></p>
+    <div class="row"><button class="act prime" id="introGo">Start</button></div>
+  </section>
+
+  <!-- ===================== TYPE WHAT YOU HEAR ===================== -->
+  <section class="card" id="sInt" hidden>
+    <div class="rail" id="intRail"></div>
+    <div class="meta"><h2 id="intNum"></h2><span class="tag" id="intTag">type what you hear</span></div>
+    <p class="prompt">Type the sentence exactly as you heard it.</p>
+    <div class="row"><button class="act play" id="intPlay">&#9654; Play sentence</button></div>
+    <p class="note" id="intPlaysLeft"></p>
+    <input type="text" id="intText" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="type here" disabled>
+    <p class="note">Spelling does not need to be perfect. Leave words out if you did not hear them.</p>
+    <div class="row"><button class="act prime" id="intNext" disabled>Next</button></div>
+    <p class="note" id="intFeedback" hidden></p>
+  </section>
+
+  <!-- ===================== SAME PERSON ===================== -->
+  <section class="card" id="sId" hidden>
+    <div class="rail" id="idRail"></div>
+    <div class="meta"><h2 id="idNum"></h2><span class="tag" id="idTag">same person?</span></div>
+    <p class="prompt">Are these two clips spoken by the <b>same person</b>?</p>
+    <div class="row">
+      <button class="act play" id="idA">&#9654; Voice 1</button>
+      <button class="act play" id="idB">&#9654; Voice 2</button>
+    </div>
+    <div class="row"><button class="act" id="idBoth">&#9654; Play both</button><span class="note">Play both voices before answering.</span></div>
+    <div class="row">
+      <button class="act ans same" id="idSame" disabled>Same person</button>
+      <button class="act ans diff" id="idDiff" disabled>Different people</button>
+    </div>
+    <p class="note" id="idFeedback" hidden></p>
+  </section>
+
+  <!-- ===================== QUALITY ===================== -->
+  <section class="card" id="sQ" hidden>
+    <div class="rail" id="qRail"></div>
+    <div class="meta"><h2 id="qNum"></h2><span class="tag" id="qTag">sound quality</span></div>
+    <p class="prompt">How good is the <b>sound quality</b> of this clip?</p>
+    <div class="row"><button class="act play" id="qPlay">&#9654; Play clip</button></div>
+    <div class="scale" id="qScale">
+      <button class="act choice" data-v="1" disabled><b>1</b><span>Bad</span></button>
+      <button class="act choice" data-v="2" disabled><b>2</b><span>Poor</span></button>
+      <button class="act choice" data-v="3" disabled><b>3</b><span>Fair</span></button>
+      <button class="act choice" data-v="4" disabled><b>4</b><span>Good</span></button>
+      <button class="act choice" data-v="5" disabled><b>5</b><span>Excellent</span></button>
+    </div>
+    <div class="row"><button class="act prime" id="qNext" disabled>Next</button></div>
+  </section>
+
+  <!-- ===================== DONE ===================== -->
+  <section class="card" id="sDone" hidden>
+    <h2>Thank you</h2>
+    <p id="doneMsg">Making your answer code&hellip;</p>
+    <div class="stack" id="codeWrap" hidden>
+      <p><b>Your answer code.</b> Copy it and paste it where you were asked to (for example the Teams assignment),
+        or send it to the person who shared this test with you. It is locked: only the researcher can read it.</p>
+      <div class="codebox" id="codeText"></div>
+      <div class="row"><button class="act prime" id="copyBtn">Copy code</button><span class="sub" id="copyMsg"></span></div>
+    </div>
+    <p class="note" id="saveMsg"></p>
+    <div class="row"><button class="act" id="againBtn">Start again for another person</button></div>
+  </section>
+
+  <!-- ===================== RESULTS (researcher password) ===================== -->
+  <section id="sRes" hidden style="display:flex;flex-direction:column;gap:18px">
+    <div class="card">
+      <h2>Add answer codes</h2>
+      <p class="note">Paste any text that contains answer codes: a whole Teams chat, an exported Forms sheet, or single
+        codes. Every code that starts <span class="mono">LT3.</span> is read and unlocked. A code added twice is kept
+        once. When the page owner is signed in, answers are also saved here; otherwise use Download before leaving.</p>
+      <textarea id="impText" rows="5" placeholder="paste here"></textarea>
+      <div class="row"><button class="act prime" id="impBtn">Add codes</button><span class="sub" id="impMsg"></span></div>
+    </div>
+    <div class="card">
+      <div class="meta"><h2>Participants</h2><button class="act" id="refreshBtn">Refresh</button></div>
+      <p><span class="big" id="nDone">0</span> <span class="sub" id="nNote">completed sessions</span></p>
+      <div class="scroll"><table class="ledger" id="sumTable"></table></div>
+      <p class="note">Quick look only. The paper uses the analysis script (analyse_listening_v2.py), which applies the
+        exclusion rules and statistics fixed before the test. Preview sessions are never counted.</p>
+      <div class="scroll"><table class="ledger" id="partTable"></table></div>
+      <div class="row"><button class="act" id="exportBtn">Download all responses (JSON)</button><span class="sub" id="exportMsg"></span></div>
+      <textarea id="exportText" rows="4" hidden readonly></textarea>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+'use strict';
+// ---------------------------------------------------------------- constants
+const PUB_JWK = {"kty":"EC","crv":"P-256","x":"XYQvYNxJ1gm5d6Yq6fX_xLCtWXgMrGMdEI-s9cjjZUI","y":"lELruEjKFEPKfwvatwSwPqOvZdO7yf98lGxNTZyTo5k"};
+const KEYBOX = null /* researcher key removed from this public copy */;   // researcher key, locked with the researcher password
+const STORE_KEY = 'lt3-progress';
+const HP_N = 3, GROUPS = 3;
+const OPTIONS = {
+  dev:  [['oh','Over-ear headphones'],['ie','Earphones / earbuds'],['ls','Laptop or tablet speakers'],['ph','Phone speaker']],
+  env:  [['q','Quiet room'],['s','Some background noise'],['n','Noisy place']],
+  eng:  [['n','First language'],['f','Fluent'],['c','Comfortable'],['b','Basic']],
+  hear: [['no','No'],['yes','Yes'],['na','Prefer not to say']],
+};
+const $ = id => document.getElementById(id);
+const SECTIONS = ['sWelcome','sAbout','sVolume','sHp','sHpDone','sIntro','sInt','sId','sQ','sDone'];
+function show(id){ for (const s of SECTIONS) $(s).hidden = (s !== id); window.scrollTo(0,0); }
+
+// ---------------------------------------------------------------- helpers
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a);
+  t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function hashStr(s){ let h=2166136261>>>0; for (const c of s){ h^=c.charCodeAt(0); h=Math.imul(h,16777619)>>>0; } return h; }
+function shuffle(arr, rnd){ const a=arr.slice(); for (let i=a.length-1;i>0;i--){ const j=Math.floor(rnd()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function rid(n){ const b=crypto.getRandomValues(new Uint8Array(n)); return Array.from(b,x=>'abcdefghijkmnpqrstuvwxyz23456789'[x%32]).join(''); }
+function b64u(bytes){ let s=''; for (let i=0;i<bytes.length;i+=0x8000) s+=String.fromCharCode.apply(null,bytes.subarray(i,i+0x8000));
+  return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); }
+function unb64u(s){ s=s.replace(/-/g,'+').replace(/_/g,'/'); while (s.length%4) s+='='; const b=atob(s);
+  const u=new Uint8Array(b.length); for (let i=0;i<b.length;i++) u[i]=b.charCodeAt(i); return u; }
+function crc32(bytes){ let c, crc=0xFFFFFFFF; for (let i=0;i<bytes.length;i++){ c=(crc^bytes[i])&0xFF;
+  for (let k=0;k<8;k++) c = c&1 ? (c>>>1)^0xEDB88320 : c>>>1; crc=(crc>>>8)^c; } return (crc^0xFFFFFFFF)>>>0; }
+function lsGet(){ try { return JSON.parse(localStorage.getItem(STORE_KEY)||'null'); } catch(e){ return null; } }
+function lsSet(v){ try { if (v===null) localStorage.removeItem(STORE_KEY); else localStorage.setItem(STORE_KEY, JSON.stringify(v)); } catch(e){} }
+const now = () => Math.round(performance.now());
+
+// ---------------------------------------------------------------- word scoring (same rules as analyse_listening_v2.py)
+const NUMW = {'0':'zero','1':'one','2':'two','3':'three','4':'four','5':'five','6':'six','7':'seven','8':'eight','9':'nine','10':'ten',
+  '11':'eleven','12':'twelve','13':'thirteen','14':'fourteen','15':'fifteen','16':'sixteen','17':'seventeen','18':'eighteen','19':'nineteen','20':'twenty'};
+function words(s){ return (s||'').toLowerCase().replace(/[\u2018\u2019`]/g,"'").replace(/[^a-z0-9' ]+/g,' ')
+  .split(/\s+/).filter(Boolean).map(w => NUMW[w] || w.replace(/'/g,'')); }
+function lev(a,b){ const m=a.length,n=b.length; if (Math.abs(m-n)>1) return 2; const d=Array.from({length:m+1},(_,i)=>[i]);
+  for (let j=1;j<=n;j++) d[0][j]=j; for (let i=1;i<=m;i++) for (let j=1;j<=n;j++)
+  d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1)); return d[m][n]; }
+function wordEq(a,b){ if (a===b) return true; return a.length>=5 && b.length>=5 && lev(a,b)<=1; }
+function wordsCorrect(ref, typed){ const r=words(ref), t=words(typed); const L=Array.from({length:r.length+1},()=>new Array(t.length+1).fill(0));
+  for (let i=1;i<=r.length;i++) for (let j=1;j<=t.length;j++) L[i][j] = wordEq(r[i-1],t[j-1]) ? L[i-1][j-1]+1 : Math.max(L[i-1][j],L[i][j-1]);
+  return {correct:L[r.length][t.length], total:r.length}; }
+
+// ---------------------------------------------------------------- manifest + audio
+let M = null, DEMO = false, MV = 'demo';
+const bytesCache = new Map(), bufCache = new Map();
+let ctx = null;
+function audioCtx(){
+  if (!ctx){ try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch(e){}
+    const AC = window.AudioContext || window.webkitAudioContext; ctx = new AC(); }
+  if (ctx.state==='suspended') ctx.resume(); return ctx; }
+
+function demoManifest(){
+  const spk = [['S01','F',210],['S02','F',190],['S03','M',115],['S04','M',130]];
+  const A = k => 'demo:'+k; const ident=[], quality=[], intel=[];
+  for (const [S] of spk){
+    const P = spk.find(x=>x[0]!==S && x[1]===spk.find(y=>y[0]===S)[1])[0];
+    ident.push({id:S+'_clean_same',ref:A(S+'_ref'),test:A(S+'_test_clean'),truth:'same',cond:'clean_same',spk:S});
+    ident.push({id:S+'_prot_same',ref:A(S+'_ref'),test:A(S+'_test_prot'),truth:'same',cond:'prot_same',spk:S});
+    ident.push({id:S+'_diff',ref:A(S+'_ref'),test:A(P+'_test_clean'),truth:'different',cond:'diff',spk:S,other:P});
+    quality.push({id:S+'_q_clean',file:A(S+'_test_clean'),cond:'clean',spk:S},{id:S+'_q_prot',file:A(S+'_test_prot'),cond:'prot',spk:S});
+    intel.push({spk:S,clean:A(S+'_int_clean'),prot:A(S+'_int_prot'),transcript:'this is a preview sentence'});
+  }
+  ident.push({id:'attention_1',ref:A('S01_ref'),test:A('S03_test_clean'),truth:'different',cond:'attention',spk:'S01',other:'S03'});
+  quality.push({id:'anchor_1',file:A('anchor_1'),cond:'anchor',spk:null});
+  return {version:'demo',created:'demo',speakers:spk.map(([id,g,f0])=>({id,gender:g,f0})),identity_trials:ident,quality_items:quality,
+    intelligibility_items:intel,calibration:{ref:A('calib_ref'),test:A('calib_test'),intel:A('calib_int'),transcript:'this is the practice sentence'}};
+}
+function demoBuffer(key){
+  const c = audioCtx(), sr = c.sampleRate, dur = key.includes('int')?2.6:2.2, n = Math.floor(sr*dur);
+  const b = c.createBuffer(1,n,sr), x = b.getChannelData(0);
+  const f0 = ({S01:210,S02:190,S03:115,S04:130})[key.slice(0,3)] || 160, prot = key.includes('prot'), anchor = key.startsWith('anchor');
+  let seed = hashStr(key); const rnd = mulberry32(seed);
+  for (let i=0;i<n;i++){ const t=i/sr; let v=0; for (let k=1;k<=8;k++) v+=Math.sin(2*Math.PI*k*f0*t*(1+0.02*Math.sin(2*Math.PI*5*t)))/k;
+    v*=0.5*(1+Math.sin(2*Math.PI*3.5*t))*0.12; if (prot) v+=(rnd()*2-1)*0.004; if (anchor) v=Math.round(v*24)/24+(rnd()*2-1)*0.02;
+    const e=Math.min(1,i/(0.02*sr),(n-i)/(0.02*sr)); x[i]=v*e; }
+  return b;
+}
+async function loadManifest(){
+  try {
+    const r = await fetch('manifest.json', {cache:'no-store'});
+    if (!r.ok) throw new Error('no manifest');
+    M = await r.json(); MV = String(M.created || M.version || 'v2');
+  } catch(e){ M = demoManifest(); DEMO = true; MV = 'demo'; }
+  $('demoBanner').hidden = !DEMO;
+  if (DEMO){ $('loadMsg').textContent = 'Preview clips ready.'; $('loadBar').style.width='100%'; return; }
+  const files = new Set([M.calibration.ref, M.calibration.test, M.calibration.intel]);
+  for (const t of M.identity_trials){ files.add(t.ref); files.add(t.test); }
+  for (const q of M.quality_items) files.add(q.file);
+  for (const it of M.intelligibility_items){ files.add(it.clean); files.add(it.prot); }
+  const list = Array.from(files); let done = 0, failed = 0;
+  async function one(f){
+    for (let attempt=0; attempt<3; attempt++){
+      try { const r = await fetch(f); if (!r.ok) throw new Error(r.status); bytesCache.set(f, await r.arrayBuffer()); break; }
+      catch(e){ if (attempt===2) failed++; else await new Promise(res=>setTimeout(res, 600*(attempt+1))); }
+    }
+    done++; $('loadBar').style.width = (100*done/list.length).toFixed(0)+'%';
+    $('loadMsg').textContent = `Loading the sound clips: ${done} of ${list.length}`;
+  }
+  const queue = list.slice(); const workers = Array.from({length:4}, async () => { while (queue.length) await one(queue.shift()); });
+  await Promise.all(workers);
+  if (failed){ $('loadMsg').textContent = `${failed} clips did not load. Check your connection and reload the page.`; throw new Error('load'); }
+  $('loadMsg').textContent = `All ${list.length} clips loaded.`;
+}
+async function getBuffer(key){
+  if (bufCache.has(key)) return bufCache.get(key);
+  let b;
+  if (key.startsWith('demo:')) b = demoBuffer(key.slice(5));
+  else { const raw = bytesCache.get(key); const c = audioCtx();
+    b = await new Promise((res, rej) => { const p = c.decodeAudioData(raw.slice(0), res, rej); if (p && p.then) p.then(res, rej); }); }
+  if (bufCache.size > 24) bufCache.delete(bufCache.keys().next().value);
+  bufCache.set(key, b); return b;
+}
+let current = null;
+function stopAudio(){ if (current){ const c = current; current = null; try { c.src.onended = null; c.src.stop(); } catch(e){} c.res(); } }
+function playBuffer(b){ return new Promise(res => { stopAudio(); const c = audioCtx(); const s = c.createBufferSource();
+  s.buffer = b; s.connect(c.destination); const me = {src:s, res};
+  s.onended = () => { if (current===me) current=null; res(); }; current = me; s.start();
+  if (window.__LT_FAST) setTimeout(() => { if (current===me){ current=null; try { s.onended=null; s.stop(); } catch(e){} } res(); }, 15); }); }
+async function playKey(key, btn){
+  if (btn){ btn.classList.add('playing'); }
+  try { await playBuffer(await getBuffer(key)); } finally { if (btn){ btn.classList.remove('playing'); btn.classList.add('done'); } }
+}
+const wait = ms => new Promise(r => setTimeout(r, ms));
+
+// headphone screen (Woods et al. 2017): 200 Hz tones, one 6 dB quieter, one in antiphase
+function toneSet(order){
+  const c = audioCtx(), sr = c.sampleRate, toneN = Math.floor(sr*1.0), gapN = Math.floor(sr*0.5), ramp = Math.floor(sr*0.1);
+  const n = toneN*3 + gapN*2, b = c.createBuffer(2, n, sr), L = b.getChannelData(0), R = b.getChannelData(1), A = 0.12;
+  order.forEach((kind, k) => { const off = k*(toneN+gapN);
+    for (let i=0;i<toneN;i++){ const env = i<ramp ? 0.5*(1-Math.cos(Math.PI*i/ramp)) : (i>toneN-ramp ? 0.5*(1-Math.cos(Math.PI*(toneN-i)/ramp)) : 1);
+      const v = Math.sin(2*Math.PI*200*i/sr)*env*(kind==='quiet' ? A*Math.pow(10,-6/20) : A);
+      L[off+i] = v; R[off+i] = kind==='anti' ? -v : v; } });
+  return b;
+}
+
+// ---------------------------------------------------------------- session state
+let S = null;      // the participant's session
+function newSession(){
+  const sid = rid(10), rnd = mulberry32(hashStr(sid));
+  // each listener hears 4 of the 12 speakers (2 women, 2 men): group g of 3; all speakers are covered across listeners
+  const g = Math.floor(rnd()*GROUPS), ids = M.speakers.map(x => x.id);
+  const byG = sex => M.speakers.filter(x => x.gender === sex).map(x => x.id).filter((_, i) => i % GROUPS === g);
+  let mine = [...byG('F'), ...byG('M')];
+  if (mine.length < 2) mine = ids.filter((_, i) => i % GROUPS === g);
+  if (!mine.length) mine = ids.slice(0, 2);
+  const L = rnd() < 0.5 ? 'A' : 'B';
+  const intIdx = M.intelligibility_items.map((it, i) => [it.spk, i]).filter(([sp]) => mine.includes(sp)).map(([, i]) => i);
+  const intOrder = shuffle(intIdx.map((i, k) => [i, (k % 2) === (L === 'A' ? 0 : 1) ? 1 : 0]), rnd);
+  const core = M.identity_trials.map((t, i) => [t, i]).filter(([t]) => t.cond !== 'attention' && mine.includes(t.spk)).map(([, i]) => i);
+  const att = shuffle(M.identity_trials.map((t, i) => [t, i]).filter(([t]) => t.cond === 'attention').map(([, i]) => i), rnd).slice(0, 2);
+  const idOrder = shuffle([...core, ...att], rnd).map(i => [i, rnd() < 0.5 ? 1 : 0]);
+  const qMine = M.quality_items.map((q, i) => [q, i]).filter(([q]) => q.cond !== 'anchor' && mine.includes(q.spk)).map(([, i]) => i);
+  const anchor = shuffle(M.quality_items.map((q, i) => [q, i]).filter(([q]) => q.cond === 'anchor').map(([, i]) => i), rnd).slice(0, 1);
+  const qOrder = shuffle([...qMine, ...anchor], rnd);
+  const hp = Array.from({length:HP_N}, () => shuffle(['std','quiet','anti'], rnd));
+  return {v:3, mv:MV, demo:DEMO, sid, t0:Date.now(), t1:null, L, g, spk:mine, a:{}, name:'', hpOrder:hp, hpA:[],
+          intOrder, idOrder, qOrder, I:[], D:[], Q:[], stage:'about', i:0};
+}
+function persist(){ if (S) lsSet(S); }
+
+// ---------------------------------------------------------------- welcome
+function setStartEnabled(){ $('startBtn').disabled = !(M && $('consent').checked && loaded); }
+let loaded = false;
+$('consent').addEventListener('change', setStartEnabled);
+$('startBtn').addEventListener('click', () => { audioCtx(); S = newSession(); persist(); goAbout(); });
+$('resumeBtn').addEventListener('click', () => { audioCtx(); S = lsGet(); resume(); });
+function resume(){
+  if (!S || S.mv !== MV){ S = newSession(); return goAbout(); }
+  practice = false;
+  const f = ({about:goAbout, volume:goVolume, hp:goHp, hpdone:goHpDone, intro1:()=>goIntro(1), int:goInt,
+    intro2:()=>goIntro(2), id:goId, intro3:()=>goIntro(3), q:goQ, done:goDone})[S.stage];
+  if (f) f(); else goAbout();
+}
+
+// ---------------------------------------------------------------- about you
+function buildChoices(){
+  document.querySelectorAll('#sAbout .choices').forEach(box => {
+    const key = box.dataset.key; box.innerHTML = '';
+    for (const [v, label] of OPTIONS[key]){
+      const b = document.createElement('button'); b.type='button'; b.className='choice'; b.textContent=label; b.dataset.v=v;
+      b.setAttribute('aria-pressed','false');
+      b.addEventListener('click', () => { S.a[key]=v; box.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed', String(x===b)));
+        aboutReady(); persist(); });
+      box.appendChild(b);
+    }
+  });
+}
+function aboutReady(){ $('aboutNext').disabled = !(Object.keys(OPTIONS).every(k => S.a[k]) && (S.name || '').length >= 2); }
+function goAbout(){ S.stage='about'; persist(); buildChoices(); $('pname').value = S.name || '';
+  document.querySelectorAll('#sAbout .choices').forEach(box => box.querySelectorAll('button')
+    .forEach(x => x.setAttribute('aria-pressed', String(S.a[box.dataset.key]===x.dataset.v))));
+  aboutReady(); show('sAbout'); }
+$('pname').addEventListener('input', () => { S.name = $('pname').value.trim().slice(0,60); aboutReady(); persist(); });
+$('aboutNext').addEventListener('click', goVolume);
+
+// ---------------------------------------------------------------- volume
+function goVolume(){ S.stage='volume'; persist(); $('volNext').disabled = true; $('volPlay').classList.remove('done'); show('sVolume'); }
+$('volPlay').addEventListener('click', async () => { await playKey(M.calibration.ref, $('volPlay')); $('volNext').disabled = false; });
+$('volNext').addEventListener('click', () => { stopAudio(); goHp(); });
+
+// ---------------------------------------------------------------- headphone check
+function rail(id, n, k){ const r=$(id); r.innerHTML=''; for (let i=0;i<n;i++){ const s=document.createElement('i'); if (i<k) s.className='on'; r.appendChild(s); } }
+let hpPlayed = false;
+function goHp(){ S.stage='hp'; persist();
+  if (S.hpA.length >= HP_N) return goHpDone();
+  const k = S.hpA.length; rail('hpRail', HP_N, k); $('hpNum').textContent = `Tone check ${k+1} of ${HP_N}`;
+  hpPlayed = false; $('hpPlay').disabled = false; $('hpPlay').classList.remove('done');
+  $('hpAns').querySelectorAll('button').forEach(b => { b.disabled = true; b.setAttribute('aria-pressed','false'); });
+  show('sHp'); }
+$('hpPlay').addEventListener('click', async () => {
+  if (hpPlayed) return; hpPlayed = true; $('hpPlay').disabled = true; $('hpPlay').classList.add('playing');
+  await playBuffer(toneSet(S.hpOrder[S.hpA.length])); $('hpPlay').classList.remove('playing'); $('hpPlay').classList.add('done');
+  $('hpAns').querySelectorAll('button').forEach(b => b.disabled = false);
+});
+$('hpAns').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+  const v = +b.dataset.v; S.hpA.push(v); persist(); goHp(); }));
+function hpScore(){ return S.hpA.filter((v,k) => S.hpOrder[k][v]==='quiet').length; }
+function goHpDone(){ S.stage='hpdone'; persist(); const sc = hpScore();
+  $('hpResult').innerHTML = sc >= HP_N ? `<span class="ok">${sc} of ${HP_N} correct.</span> Your headphones are working as they should.`
+    : `<span class="warn">${sc} of ${HP_N} correct.</span> This usually means the sound is coming from speakers rather than headphones. `+
+      `If you can, put on headphones or earphones now. You can continue either way.`;
+  show('sHpDone'); }
+$('hpDoneNext').addEventListener('click', () => goIntro(1));
+
+// ---------------------------------------------------------------- intro cards with one practice item
+const INTRO = {
+  1: () => ['Part 1 of 3','type what you hear','Type what you hear',
+      `You will hear ${S.intOrder.length} short sentences, each read by a different person. You can play each sentence twice at most. Type what you heard; do not worry about spelling or punctuation.`],
+  2: () => ['Part 2 of 3','same person?','Same person or not',
+      `${S.idOrder.length} questions. Each has two short clips that never say the same words. Decide whether the two clips come from the same person. Some pairs are similar voices, so listen closely.`],
+  3: () => ['Part 3 of 3','sound quality','Rate the sound quality',
+      `${S.qOrder.length} clips. Rate how good each one sounds, from 1 (bad) to 5 (excellent). Judge the sound itself: clarity, noise and distortion. Ignore what is said and who says it.`],
+};
+let practice = false;
+function goIntro(p){ S.stage='intro'+p; persist(); const [part,tag,title,text] = INTRO[p]();
+  $('introPart').textContent = part; $('introTag').textContent = tag; $('introTitle').textContent = title; $('introText').textContent = text;
+  $('introGo').textContent = 'Start'; $('introGo').onclick = () => { practice = false; S.i = 0; ({1:goInt,2:goId,3:goQ})[p](); };
+  show('sIntro'); }
+
+// ---------------------------------------------------------------- part 1: type what you hear
+let intPlays = 0, intT0 = 0, tok = 0;
+function intItem(){ if (practice) return {file:M.calibration.intel, transcript:M.calibration.transcript};
+  const [i, prot] = S.intOrder[S.i]; const it = M.intelligibility_items[i]; return {file: prot ? it.prot : it.clean}; }
+function goInt(){ if (!practice){ S.stage='int'; persist(); if (S.i >= S.intOrder.length){ S.i = 0; return goIntro(2); } }
+  const n = S.intOrder.length; rail('intRail', n, practice ? 0 : S.i);
+  $('intNum').textContent = practice ? 'Example' : `Sentence ${S.i+1} of ${n}`;
+  tok++; stopAudio(); intPlays = 0; intT0 = now(); $('intText').value=''; $('intText').disabled = true; $('intNext').disabled = true;
+  $('intPlay').disabled = false; $('intPlay').classList.remove('done'); $('intPlaysLeft').textContent = 'You can play it 2 times.';
+  $('intFeedback').hidden = true; $('intNext').textContent = 'Next'; show('sInt'); }
+$('intPlay').addEventListener('click', async () => {
+  if (intPlays >= 2) return; intPlays++; $('intPlay').disabled = true; const my = tok;
+  await playKey(intItem().file, $('intPlay')); if (my !== tok) return;
+  $('intPlaysLeft').textContent = intPlays >= 2 ? 'No more plays for this sentence.' : 'You can play it 1 more time.';
+  $('intPlay').disabled = intPlays >= 2; $('intText').disabled = false; $('intNext').disabled = false; $('intText').focus({preventScroll:true});
+});
+$('intText').addEventListener('keydown', e => { if (e.key==='Enter' && !$('intNext').disabled){ e.preventDefault(); $('intNext').click(); } });
+$('intNext').addEventListener('click', () => {
+  stopAudio();
+  if (practice){
+    if ($('intFeedback').hidden){ $('intFeedback').hidden = false;
+      $('intFeedback').innerHTML = `The sentence was: <b>${M.calibration.transcript.toLowerCase()}</b>`;
+      $('intNext').textContent = 'Start part 1'; $('intNext').disabled = false; $('intPlay').disabled = true; $('intText').disabled = true; return; }
+    practice = false; S.i = 0; return goInt(); }
+  const [i, prot] = S.intOrder[S.i];
+  S.I.push([i, prot, $('intText').value.trim().slice(0,200), intPlays, now()-intT0]); S.i++; persist(); goInt();
+});
+
+// ---------------------------------------------------------------- part 2: same person
+let idPlayed = {a:false,b:false}, idT0 = 0, idPlays = 0, idBusy = false;
+function idPair(){ if (practice) return {a:M.calibration.ref, b:M.calibration.test};
+  const [t, refFirst] = S.idOrder[S.i]; const tr = M.identity_trials[t];
+  return refFirst ? {a:tr.ref, b:tr.test} : {a:tr.test, b:tr.ref}; }
+function goId(){ if (!practice){ S.stage='id'; persist(); if (S.i >= S.idOrder.length){ S.i = 0; return goIntro(3); } }
+  const n = S.idOrder.length; rail('idRail', n, practice ? 0 : S.i);
+  $('idNum').textContent = practice ? 'Example' : `Pair ${S.i+1} of ${n}`;
+  tok++; stopAudio(); idPlayed = {a:false,b:false}; idPlays = 0; idT0 = now(); idBusy = false;
+  ['idA','idB'].forEach(k => $(k).classList.remove('done','playing'));
+  ['idSame','idDiff'].forEach(k => { $(k).disabled = true; $(k).setAttribute('aria-pressed','false'); });
+  $('idFeedback').hidden = true; show('sId'); }
+function idCheck(){ if (idPlayed.a && idPlayed.b) ['idSame','idDiff'].forEach(k => $(k).disabled = false); }
+async function idPlay(which){ if (idBusy) return; idBusy = true; idPlays++; const my = tok;
+  try { await playKey(idPair()[which], $(which==='a'?'idA':'idB')); if (my === tok) idPlayed[which] = true; }
+  finally { if (my === tok){ idBusy = false; idCheck(); } } }
+$('idA').addEventListener('click', () => idPlay('a'));
+$('idB').addEventListener('click', () => idPlay('b'));
+$('idBoth').addEventListener('click', async () => { if (idBusy) return; idBusy = true; idPlays++; const my = tok;
+  try { const p = idPair(); await playKey(p.a, $('idA')); if (my !== tok) return; idPlayed.a = true; await wait(400);
+        if (my !== tok) return; await playKey(p.b, $('idB')); if (my === tok) idPlayed.b = true; }
+  finally { if (my === tok){ idBusy = false; idCheck(); } } });
+function idAnswer(same){
+  stopAudio();
+  if (practice){ $(same?'idSame':'idDiff').setAttribute('aria-pressed','true');
+    $('idFeedback').hidden = false; $('idFeedback').innerHTML = 'In this example both clips came from <b>the same person</b>. Now the real pairs.';
+    ['idSame','idDiff'].forEach(k => $(k).disabled = true);
+    setTimeout(() => { practice = false; S.i = 0; goId(); }, 1800); return; }
+  const [t, refFirst] = S.idOrder[S.i];
+  S.D.push([t, same ? 1 : 0, refFirst, idPlays, now()-idT0]); S.i++; persist(); goId();
+}
+$('idSame').addEventListener('click', () => idAnswer(true));
+$('idDiff').addEventListener('click', () => idAnswer(false));
+
+// ---------------------------------------------------------------- part 3: quality
+let qPlays = 0, qT0 = 0, qRating = 0;
+function qFile(){ return practice ? M.calibration.test : M.quality_items[S.qOrder[S.i]].file; }
+function goQ(){ if (!practice){ S.stage='q'; persist(); if (S.i >= S.qOrder.length) return goDone(); }
+  const n = S.qOrder.length; rail('qRail', n, practice ? 0 : S.i);
+  $('qNum').textContent = practice ? 'Example' : `Clip ${S.i+1} of ${n}`;
+  tok++; stopAudio(); qPlays = 0; qT0 = now(); qRating = 0; $('qPlay').classList.remove('done');
+  $('qScale').querySelectorAll('button').forEach(b => { b.disabled = true; b.setAttribute('aria-pressed','false'); });
+  $('qNext').disabled = true; $('qNext').textContent = practice ? 'Start part 3' : 'Next'; show('sQ'); }
+$('qPlay').addEventListener('click', async () => { qPlays++; const my = tok; await playKey(qFile(), $('qPlay'));
+  if (my === tok) $('qScale').querySelectorAll('button').forEach(b => b.disabled = false); });
+$('qScale').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+  qRating = +b.dataset.v; $('qScale').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x===b)));
+  $('qNext').disabled = false; }));
+$('qNext').addEventListener('click', () => { stopAudio();
+  if (practice){ practice = false; S.i = 0; return goQ(); }
+  S.Q.push([S.qOrder[S.i], qRating, qPlays, now()-qT0]); S.i++; persist(); goQ(); });
+
+// ---------------------------------------------------------------- finish: answer code (+ auto-save when allowed)
+const isTest = n => /^test\b/i.test((n || '').trim());      // a run named "test..." is the researcher trying the page
+function payload(){ return {v:3, mv:S.mv, demo:S.demo, test:isTest(S.name) ? 1 : 0, sid:S.sid, t0:S.t0, t1:S.t1, name:S.name, a:S.a, L:S.L, g:S.g, spk:S.spk,
+  n:[S.intOrder.length, S.idOrder.length, S.qOrder.length],
+  hp:{a:S.hpA, ord:S.hpOrder.map(o => o.map(k => k[0]).join('')), score:hpScore()}, I:S.I, D:S.D, Q:S.Q,
+  ua:(navigator.userAgent||'').slice(0,140)}; }
+async function deflate(bytes){
+  if (typeof CompressionStream === 'undefined') return null;
+  try { const cs = new CompressionStream('deflate-raw'); const w = cs.writable.getWriter(); w.write(bytes); w.close();
+    return new Uint8Array(await new Response(cs.readable).arrayBuffer()); } catch(e){ return null; }
+}
+async function inflate(bytes){ const ds = new DecompressionStream('deflate-raw'); const w = ds.writable.getWriter(); w.write(bytes); w.close();
+  return new Uint8Array(await new Response(ds.readable).arrayBuffer()); }
+const te = new TextEncoder(), td = new TextDecoder();
+async function makeCode(obj){
+  let body = te.encode(JSON.stringify(obj)), flags = 0;
+  const z = await deflate(body); if (z && z.length < body.length){ body = z; flags |= 1; }
+  try {
+    const eph = await crypto.subtle.generateKey({name:'ECDH', namedCurve:'P-256'}, true, ['deriveBits']);
+    const pub = await crypto.subtle.importKey('jwk', PUB_JWK, {name:'ECDH', namedCurve:'P-256'}, false, []);
+    const bits = await crypto.subtle.deriveBits({name:'ECDH', public:pub}, eph.privateKey, 256);
+    const hk = await crypto.subtle.importKey('raw', bits, 'HKDF', false, ['deriveKey']);
+    const key = await crypto.subtle.deriveKey({name:'HKDF', hash:'SHA-256', salt:new Uint8Array(0), info:te.encode('lt3')}, hk,
+                                              {name:'AES-GCM', length:256}, false, ['encrypt']);
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ct = new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM', iv}, key, body));
+    const er = new Uint8Array(await crypto.subtle.exportKey('raw', eph.publicKey));
+    const out = new Uint8Array(2 + er.length + 12 + ct.length); out[0]=3; out[1]=flags|2;
+    out.set(er, 2); out.set(iv, 2+er.length); out.set(ct, 2+er.length+12);
+    return 'LT3.' + b64u(out) + '.end';
+  } catch(e){
+    const out = new Uint8Array(2 + body.length + 4); out[0]=3; out[1]=flags; out.set(body, 2);
+    const c = crc32(body); out[2+body.length]=c>>>24; out[3+body.length]=(c>>>16)&255; out[4+body.length]=(c>>>8)&255; out[5+body.length]=c&255;
+    return 'LT3.' + b64u(out) + '.end';
+  }
+}
+async function goDone(){
+  S.stage='done'; if (!S.t1) S.t1 = Date.now(); persist(); show('sDone');
+  $('doneMsg').textContent = 'You have finished all three parts. Thank you for listening so carefully.';
+  const obj = payload(); let code = '';
+  try { code = await makeCode(obj); } catch(e){ code = ''; }
+  if (code){ $('codeWrap').hidden = false; $('codeText').textContent = code; }
+  else { $('doneMsg').textContent = 'You have finished. This browser could not make an answer code; please tell the person who shared this test with you.'; }
+  $('saveMsg').textContent = '';
+  if (!DEMO){ const ok = await saveToStore(obj); if (ok) $('saveMsg').textContent = 'Your answers were also saved automatically.';
+    if (obj.test) $('saveMsg').textContent += (ok ? ' ' : '') + 'Test run (the name starts with \u201ctest\u201d): it is kept apart and not counted.'; }
+  else $('saveMsg').textContent = 'Preview: these answers are not counted.';
+}
+$('copyBtn').addEventListener('click', () => {
+  const txt = $('codeText').textContent;
+  navigator.clipboard.writeText(txt).then(() => { $('copyMsg').textContent = 'Copied.'; },
+    () => { const r = document.createRange(); r.selectNodeContents($('codeText')); const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+            $('copyMsg').textContent = 'Selected. Copy it with your device\u2019s copy command.'; });
+});
+$('againBtn').addEventListener('click', () => { lsSet(null); S = null; $('consent').checked = false; $('codeWrap').hidden = true;
+  $('copyMsg').textContent = ''; $('resumeBtn').hidden = true; setStartEnabled(); show('sWelcome'); });
+
+// ---------------------------------------------------------------- store (signed-in viewers who may write; owner tools)
+let db = null, user = null, uid = null, isOwner = false;
+async function caps(){
+  const C = window.claude; if (!C || !C.use) return;
+  try { [db, user] = await Promise.all([C.use('db'), C.use('user')]); } catch(e){ db = null; user = null; }
+  try { uid = user ? await user.id() : null; isOwner = user ? await user.isOwner() : false; } catch(e){ uid = null; isOwner = false; }
+}
+async function saveToStore(obj){
+  if (!db || !uid) return false;
+  try {
+    await db.doc(`responses/${uid}`).set({updated: Date.now()});
+    await db.doc(`responses/${uid}/sessions/${obj.sid}`).set({...obj, source:'page', saved:Date.now()});
+    return true;
+  } catch(e){ return false; }
+}
+
+// researcher: the key that unlocks answer codes is itself locked with the researcher password
+let PRIV = null; const LOCAL = new Map();
+async function privKey(){ if (!PRIV) throw new Error('locked'); return PRIV; }
+async function unlock(pw){
+  const norm = (pw || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const base = await crypto.subtle.importKey('raw', te.encode(norm), 'PBKDF2', false, ['deriveKey']);
+  const k = await crypto.subtle.deriveKey({name:'PBKDF2', salt:unb64u(KEYBOX.salt), iterations:KEYBOX.iter, hash:'SHA-256'},
+                                         base, {name:'AES-GCM', length:256}, false, ['decrypt']);
+  const jwk = JSON.parse(td.decode(await crypto.subtle.decrypt({name:'AES-GCM', iv:unb64u(KEYBOX.iv)}, k, unb64u(KEYBOX.ct))));
+  PRIV = await crypto.subtle.importKey('jwk', jwk, {name:'ECDH', namedCurve:'P-256'}, false, ['deriveBits']);
+}
+$('resLink').addEventListener('click', () => { $('resBox').hidden = !$('resBox').hidden; if (!$('resBox').hidden) $('resPass').focus(); });
+$('resBox').addEventListener('submit', async e => {
+  e.preventDefault(); $('resGo').disabled = true; $('resMsg').textContent = 'Unlocking\u2026';
+  try { await unlock($('resPass').value); $('resPass').value = ''; $('resMsg').textContent = ''; $('resBox').hidden = true;
+        $('nav').hidden = false; $('tabRes').click(); }
+  catch(err){ PRIV = null; $('resMsg').textContent = 'Wrong password.'; }
+  finally { $('resGo').disabled = false; }
+});
+async function readCode(b64){
+  const raw = unb64u(b64); if (raw[0] !== 3) throw new Error('unknown version');
+  const flags = raw[1]; let body;
+  if (flags & 2){
+    const er = raw.subarray(2, 67), iv = raw.subarray(67, 79), ct = raw.subarray(79);
+    const ep = await crypto.subtle.importKey('raw', er, {name:'ECDH', namedCurve:'P-256'}, false, []);
+    const bits = await crypto.subtle.deriveBits({name:'ECDH', public:ep}, await privKey(), 256);
+    const hk = await crypto.subtle.importKey('raw', bits, 'HKDF', false, ['deriveKey']);
+    const key = await crypto.subtle.deriveKey({name:'HKDF', hash:'SHA-256', salt:new Uint8Array(0), info:te.encode('lt3')}, hk,
+                                              {name:'AES-GCM', length:256}, false, ['decrypt']);
+    body = new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM', iv}, key, ct));
+  } else {
+    body = raw.subarray(2, raw.length-4); const c = crc32(body), t = raw.subarray(raw.length-4);
+    if (((t[0]<<24)|(t[1]<<16)|(t[2]<<8)|t[3])>>>0 !== c) throw new Error('damaged code');
+  }
+  if (flags & 1) body = await inflate(body);
+  return JSON.parse(td.decode(body));
+}
+$('impBtn').addEventListener('click', async () => {
+  const txt = $('impText').value.replace(/\s+/g, '');
+  const codes = [...new Set([...txt.matchAll(/LT3\.([A-Za-z0-9_-]+)\.end/g)].map(m => m[1]))];
+  if (!codes.length){ $('impMsg').textContent = 'No codes found. Codes start with LT3. and end with .end'; return; }
+  let ok = 0, bad = 0, demo = 0; $('impBtn').disabled = true;
+  let canSave = !!(db && uid);
+  if (canSave){ try { await db.doc(`responses/${uid}`).set({updated: Date.now()}); } catch(e){ canSave = false; } }
+  for (const c of codes){
+    try { const obj = await readCode(c); if (obj.demo) { demo++; continue; }
+      const rec = {...obj, source:'code', saved:Date.now()}; LOCAL.set(obj.sid, rec); ok++;
+      if (canSave){ try { await db.doc(`responses/${uid}/sessions/${obj.sid}`).set(rec); } catch(e){ canSave = false; } } }
+    catch(e){ bad++; }
+    $('impMsg').textContent = `Added ${ok}` + (bad ? `, ${bad} could not be read` : '') + (demo ? `, ${demo} preview codes skipped` : '');
+  }
+  $('impBtn').disabled = false; await refresh();
+});
+
+let ALL = [];
+async function loadAll(){
+  const out = [...LOCAL.values()];
+  if (!db) return out;
+  let parents; try { parents = await db.collection('responses').get(); } catch(e){ return out; }
+  for (const p of parents.docs){
+    try { const ss = await db.collection(`responses/${p.id}/sessions`).get();
+          for (const d of ss.docs){ const x = d.data(); if (x) out.push(x); } } catch(e){}
+  }
+  const by = new Map(); for (const x of out){ if (!by.has(x.sid) || (x.t1 && !by.get(x.sid).t1)) by.set(x.sid, x); }
+  return [...by.values()];
+}
+function pct(a){ return a.length ? (100*a.reduce((s,x)=>s+x,0)/a.length).toFixed(0)+'%' : '\u2014'; }
+function mean(a){ return a.length ? (a.reduce((s,x)=>s+x,0)/a.length).toFixed(2) : '\u2014'; }
+async function refresh(){
+  try { ALL = await loadAll(); } catch(e){ ALL = [...LOCAL.values()]; }
+  const tests = ALL.filter(x => !x.demo && x.mv === MV && x.test).length;
+  const real = ALL.filter(x => !x.demo && x.mv === MV && !x.test);
+  const done = real.filter(x => x.t1 && x.D && x.I && x.Q && x.D.length === (x.n ? x.n[1] : M.identity_trials.length)
+                              && x.I.length === (x.n ? x.n[0] : M.intelligibility_items.length) && x.Q.length === (x.n ? x.n[2] : M.quality_items.length));
+  $('nDone').textContent = done.length;
+  $('nNote').textContent = `completed sessions` + (real.length > done.length ? ` (${real.length-done.length} unfinished)` : '')
+                         + (tests ? ` \u00b7 ${tests} test run${tests > 1 ? 's' : ''} not counted` : '');
+  const id = {clean_same:[], prot_same:[], diff:[], attention:[]}, it = {0:[],1:[]}, q = {clean:[], prot:[], anchor:[]};
+  const rows = [];
+  for (const x of done){
+    let att = 0, attN = 0;
+    for (const [t, same] of x.D){ const tr = M.identity_trials[t]; if (!tr) continue; id[tr.cond]?.push(same);
+      if (tr.cond === 'attention'){ attN++; if (!same) att++; } }
+    let wc = {0:[0,0],1:[0,0]};
+    for (const [i, prot, text] of x.I){ const ref = M.intelligibility_items[i]?.transcript; if (!ref) continue;
+      const r = wordsCorrect(ref, text); wc[prot][0]+=r.correct; wc[prot][1]+=r.total; }
+    for (const k of [0,1]) if (wc[k][1]) it[k].push(wc[k][0]/wc[k][1]);
+    for (const [qi, rating] of x.Q){ const qq = M.quality_items[qi]; if (qq) q[qq.cond]?.push(rating); }
+    rows.push([x.sid.slice(0,6), x.name || x.en || '\u2014', x.a?.dev || '\u2014', `${x.hp?.score ?? '\u2014'}/${x.hp?.a?.length ?? '\u2014'}`, `${att}/${attN}`,
+               new Date(x.t1).toLocaleString(), x.source || '']);
+  }
+  $('sumTable').innerHTML = '<tr><th>Measure</th><th>Clean</th><th>Protected</th><th>Other</th></tr>' +
+    `<tr><td>Said "same person" (true pairs)</td><td>${pct(id.clean_same)}</td><td>${pct(id.prot_same)}</td><td></td></tr>` +
+    `<tr><td>Said "same person" (different speakers)</td><td>${pct(id.diff)}</td><td></td><td>attention ${pct(id.attention)}</td></tr>` +
+    `<tr><td>Words typed correctly</td><td>${pct(it[0])}</td><td>${pct(it[1])}</td><td></td></tr>` +
+    `<tr><td>Quality rating (1-5)</td><td>${mean(q.clean)}</td><td>${mean(q.prot)}</td><td>anchor ${mean(q.anchor)}</td></tr>`;
+  $('partTable').innerHTML = '<tr><th>Session</th><th>Name</th><th>Device</th><th>Tones</th><th>Attention</th><th>Finished</th><th>Via</th></tr>' +
+    rows.map(r => '<tr>' + r.map(c => `<td>${String(c).replace(/[<>&]/g,'')}</td>`).join('') + '</tr>').join('');
+}
+$('refreshBtn').addEventListener('click', refresh);
+$('exportBtn').addEventListener('click', async () => {
+  const data = JSON.stringify({manifest_created: MV, exported: new Date().toISOString(), sessions: ALL}, null, 1);
+  const C = window.claude; let dl = null; try { dl = C && C.use ? await C.use('downloads') : null; } catch(e){ dl = null; }
+  if (dl){ try { await dl.save({filename:'listening_test_2_responses.json', data}); $('exportMsg').textContent = 'Saved.'; return; } catch(e){} }
+  $('exportText').hidden = false; $('exportText').value = data; $('exportMsg').textContent = 'Copy the text below.';
+});
+$('tabTest').addEventListener('click', () => { $('tabTest').setAttribute('aria-pressed','true'); $('tabRes').setAttribute('aria-pressed','false');
+  $('sRes').hidden = true; resumeView(); });
+$('tabRes').addEventListener('click', () => { if (!PRIV) return; $('tabRes').setAttribute('aria-pressed','true'); $('tabTest').setAttribute('aria-pressed','false');
+  for (const s of SECTIONS) $(s).hidden = true; $('sRes').hidden = false; refresh(); });
+function resumeView(){ if (S) resume(); else show('sWelcome'); }
+$('tabLock').addEventListener('click', () => { PRIV = null; LOCAL.clear(); ALL = []; $('impText').value = ''; $('impMsg').textContent = '';
+  $('exportText').value = ''; $('exportText').hidden = true; $('sumTable').innerHTML = ''; $('partTable').innerHTML = ''; $('nDone').textContent = '0';
+  $('nav').hidden = true; $('sRes').hidden = true; $('tabTest').setAttribute('aria-pressed','true'); $('tabRes').setAttribute('aria-pressed','false'); resumeView(); });
+
+// ---------------------------------------------------------------- boot
+(async () => {
+  caps();
+  try { await loadManifest(); loaded = true; } catch(e){ loaded = false; }
+  const saved = lsGet();
+  if (saved && saved.mv === MV && saved.stage !== 'done' && loaded){ $('resumeBtn').hidden = false; $('consent').checked = true; }
+  setStartEnabled();
+})();
+})();
+</script>
