@@ -33,7 +33,7 @@ The printed output is identical to `analysis/paper_numbers_output.txt`. In Colab
 | Folder | Contents | Paper |
 |---|---|---|
 | `code/` | The main pipeline in 16 files, numbered in the order they were run | Sections IV–VII |
-| `notebooks/` | The same code as Colab notebooks, one per Colab session | |
+| `notebooks/` | The same code as Colab notebooks that run top to bottom (setup cell added, see "Running the code") | |
 | `experiments_v2/` | The two later runs, as Colab notebooks plus the same code as `.py`. **Overnight run v2:** matched comparison of channel models, processing ablations, five repeated runs, and the audio for listening test 2. **Device-control run:** the control for the colouring shared by all measured responses | VII-B to VII-E, Tables III and IV |
 | `analysis/` | `paper_numbers.py` and its output | Tables III, IV, VI, C9, C10 |
 | `results/` | Trial-level results of both later runs (one row per trial), plus their run logs and setup files | |
@@ -66,21 +66,36 @@ Files 14 and 15 define encoder C, the ensemble protection and the transfer trick
 
 ## Running the code
 
-1. **Colab:** open a notebook in Google Colab, choose Runtime → Change runtime type → T4 GPU, and mount Google Drive when asked.
-2. **Drive folder.** The code reads and writes `MyDrive/PHC351_24324008_VoiceProtection/`. To run it with the files in this repository, put them in that folder:
+1. **Open and run.** In Google Colab, go to File → Open notebook → GitHub, paste this repository's URL and pick a notebook from `notebooks/`. Choose Runtime → Change runtime type → T4 GPU, then Runtime → Run all. Allow Google Drive access when asked.
+2. **The setup cell** at the top of each notebook in `notebooks/` does three things:
+   - it copies the inputs from `MyDrive/PHC351_24324008_VoiceProtection/` into a run folder in the Colab session, `/content/PHC351_rerun`;
+   - it downloads LibriSpeech `train-clean-100` (6.3 GB) where the notebook needs it;
+   - it makes audio loading work with current torchaudio, falling back to soundfile when torchcodec is not installed.
+
+   Everything is written into the run folder, so the files on Drive are never overwritten. The run folder disappears when the Colab session ends.
+3. **Changes from the original cells.**
+   - Cells marked `ADDED for the re-run` define names that the original session created in cells that were not kept (for example the room list and the alignment function), switch a trained encoder to evaluation mode, or print results.
+   - Lines marked `# re-run:` change only a file path.
+   - `code/` keeps the cells exactly as run.
+4. **Inputs.**
+   - `01-05` needs only LibriSpeech.
+   - The other notebooks need the project folder on Google Drive. Its recordings (the sweeps, the re-recorded clips, and the clips in `demo_best_config/`) are not in this repository.
+   - To use the files in this repository in such a folder, put them here:
 
    | File in this repository | Place in the Drive folder |
    |---|---|
    | `models/modelA_speaker_encoder.pt`, `models/modelB_independent_judge.pt` | `code/` |
    | `data/measured_rirs.pt` | `testing_data/recordings/` |
    | `data/thresholds_measured.pt` | `testing_data/results/` |
-   | Held-out clips: the two LibriSpeech utterances per speaker listed in `results/overnight_v2/setup_info.json` | `training_data/heldout_subset/`, named `<speaker>_<utterance>.flac` |
+   | Held-out clips: at least three LibriSpeech utterances per held-out speaker (the two used per speaker are listed in `results/overnight_v2/setup_info.json`) | `training_data/heldout_subset/`, named `<speaker>_<utterance>.flac` |
 
-3. **Session order.**
-   - `06`, `09`, `13` and `16` start by mounting Drive and loading what they need, so each can begin a fresh session.
-   - The other files use names defined by the files before them. Run the files of one notebook in order, in one session.
-4. **Data.** LibriSpeech `train-clean-100` (6.3 GB) and the OpenSLR-28 room impulse responses are downloaded from openslr.org by `06`, `16` and the two later runs. Files 01–05 expect LibriSpeech already unpacked at `/content/LibriSpeech/train-clean-100`.
-5. **Long runs.** The two runs in `experiments_v2/` take several hours. They save every finished unit to Drive, so a disconnected run resumes where it stopped. Both runs were resumed this way; see `results/*/run_log.txt`.
+5. **Long steps.**
+   - `04` and `06` train encoders A and B.
+   - `09`, `11` and `13` run the protection for many clips.
+   - `14` skips training when the saved encoder-C checkpoint is in the project folder.
+6. **The two runs in `experiments_v2/`** are the notebooks exactly as run.
+   - They read and write the project folder itself, and resume where a run stopped. On a Drive that already holds the finished run, they only rebuild the report.
+   - From scratch they take several hours. Both runs were resumed after Colab disconnects; see `results/*/run_log.txt`.
 
 ## Randomness
 
